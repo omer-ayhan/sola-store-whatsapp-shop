@@ -10,6 +10,22 @@ body {
 		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+.border-1 {
+	border-width: 1px;
+}
+
+.border-x-1 {
+	border-right-width: 1px;
+	border-left-width: 1px;
+}
+
+.border-l-1 {
+	border-left-width: 1px;
+}
+.border-r-1 {
+	border-right-width: 1px;
+}
+
 a {
 	color: inherit;
 	text-decoration: none;
