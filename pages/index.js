@@ -1,8 +1,11 @@
-import CartLayout from "@components/CartLayout";
-import ProductGrid from "@components/ProductGrid";
 import axios from "axios";
 import Image from "next/image";
+
+import CartLayout from "@components/CartLayout";
+import ProductGrid from "@components/ProductGrid";
 import sources from "sources";
+import useModal from "hooks/useModal";
+import CustomModal from "@components/CustomModal";
 
 export default function Home({
 	newProducts,
@@ -10,8 +13,13 @@ export default function Home({
 	brands,
 	brandProducts,
 }) {
+	const { open, closeModal, openModal } = useModal();
 	return (
-		<div className="relative  w-full">
+		<div className="relative w-full">
+			<button className="btn btn-default" onClick={openModal}>
+				Show Modal
+			</button>
+			<CustomModal show={open} onClose={closeModal} />
 			<div className="bg-background-color h-full w-full absolute -z-20" />
 			<div className="bg-[url('/images/bg.png')] bg-repeat opacity-10 h-full w-full absolute -z-10" />
 			<div className="grid grid-flow-col grid-cols-6 z-40 justify-center">
@@ -30,17 +38,20 @@ export default function Home({
 					</div>
 					<div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
 						<ProductGrid
+							onClick={openModal}
 							data={newProducts}
 							title="New Products"
 							size={newProducts.length}
 						/>
 						<ProductGrid
+							onClick={openModal}
 							data={saleProducts}
 							title="Sale Products"
 							size={saleProducts.length}
 						/>
 						{brandProducts.map((brandProduct, i) => (
 							<ProductGrid
+								onClick={openModal}
 								key={`${i}.--!`}
 								data={brandProduct.data}
 								title={brandProduct.title}

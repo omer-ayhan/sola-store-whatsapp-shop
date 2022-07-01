@@ -15,7 +15,11 @@ export default function ProductGrid({ data, title, size, onClick }) {
 					key={`${i}.!!`}
 					className="relative col-span-2 w-full h-52 cursor-pointer rounded-lg overflow-hidden">
 					{i + 1 === gridSize && (
-						<div className="flex justify-center items-center absolute w-full h-full bg-overlay-color z-50">
+						<div
+							style={{
+								zIndex: "1",
+							}}
+							className="flex justify-center items-center absolute w-full h-full bg-overlay-color">
 							<p className="text-white text-3xl">+{size}</p>
 						</div>
 					)}
