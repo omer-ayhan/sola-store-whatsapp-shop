@@ -9,6 +9,7 @@ module.exports = {
 			colors: {
 				"primary-green": "#008169",
 				"secondary-green": "#21bb46",
+				"secondary-green-dark": "#15a738",
 				"background-color": "#e5ddd5",
 				"overlay-color": "#00000099",
 			},
