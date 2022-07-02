@@ -1,12 +1,17 @@
+import useDetectOutside from "hooks/useDetectOutside";
 import Image from "next/image";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import Drawer from "react-drag-drawer";
 import { FaArrowLeft } from "react-icons/fa";
 
 export default function CustomModal({ show, onClose, children }) {
+	const modalRef = useRef();
+
+	useDetectOutside(modalRef, onClose);
+
 	return (
-		<Drawer open={show} onRequestClose={onClose}>
-			<div className="grid grid-cols-1 bg-white z-50 ">
+		<Drawer open={show}>
+			<div ref={modalRef} className="grid grid-cols-1 bg-white z-50 ">
 				<div className="flex justify-between items-center bg-primary-green w-full py-3 px-4">
 					<div className="flex items-center gap-3">
 						<button

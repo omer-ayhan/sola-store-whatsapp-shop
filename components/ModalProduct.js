@@ -13,6 +13,9 @@ export default function ModalProduct({ data, windowProps }) {
 			itemSize={windowProps.height}>
 			{({ key, index, style }) => {
 				const product = data[index];
+				// const sizeNum = (sizes && sizes.split("-").length) || 0;
+				// const oldUnitPrice = oldPrice / sizeNum;
+				// const originalDiscount = oldUnitPrice - singlePrice;
 				return (
 					<div key={`${key}..${index}`} style={style}>
 						<div
