@@ -1,16 +1,12 @@
+import Image from "next/image";
 import React, { useLayoutEffect, useState } from "react";
 import Drawer from "react-drag-drawer";
 import { FaArrowLeft } from "react-icons/fa";
 
-export default function CustomModal({ show, onClose }) {
-	const [windowHeight, setWindowHeight] = useState(0);
-	console.log(windowHeight);
-	useLayoutEffect(() => {
-		setWindowHeight(`h-[${window.innerHeight}px]`);
-	}, []);
+export default function CustomModal({ show, onClose, children }) {
 	return (
 		<Drawer open={show} onRequestClose={onClose}>
-			<div className="w-[600px] bg-white z-50">
+			<div className="grid grid-cols-1 bg-white z-50 ">
 				<div className="flex justify-between items-center bg-primary-green w-full py-3 px-4">
 					<div className="flex items-center gap-3">
 						<button
@@ -27,8 +23,8 @@ export default function CustomModal({ show, onClose }) {
 						<span className="px-2 mx-1 text-xs rounded-md bg-[#07a884]">6</span>
 					</button>
 				</div>
-				<div className={`bg-white w-full max-h-screen`}>
-					<p>test</p>
+				<div className="bg-white w-full h-[870px] overflow-y-scroll">
+					{children}
 				</div>
 			</div>
 		</Drawer>

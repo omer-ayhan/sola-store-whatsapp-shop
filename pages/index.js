@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 
@@ -6,6 +7,7 @@ import ProductGrid from "@components/ProductGrid";
 import sources from "sources";
 import useModal from "hooks/useModal";
 import CustomModal from "@components/CustomModal";
+import ModalProduct from "@components/ModalProduct";
 
 export default function Home({
 	newProducts,
@@ -14,19 +16,41 @@ export default function Home({
 	brandProducts,
 }) {
 	const { open, closeModal, openModal } = useModal();
+	const [modalData, setModalData] = useState(null);
+	const [windowProps, setWindowProps] = useState({
+		width: 0,
+		height: 0,
+	});
+
+	useEffect(() => {
+		setWindowProps({
+			width: window.innerWidth,
+			height: window.innerHeight,
+		});
+	}, []);
+
 	return (
 		<div className="relative w-full">
-			<button className="btn btn-default" onClick={openModal}>
-				Show Modal
-			</button>
-			<CustomModal show={open} onClose={closeModal} />
+			<CustomModal show={open} onClose={closeModal}>
+				{modalData && (
+					<ModalProduct windowProps={windowProps} data={modalData} />
+				)}
+			</CustomModal>
 			<div className="bg-background-color h-full w-full absolute -z-20" />
 			<div className="bg-[url('/images/bg.png')] bg-repeat opacity-10 h-full w-full absolute -z-10" />
 			<div className="grid grid-flow-col grid-cols-6 z-40 justify-center">
 				<div className="col-span-6 lg:col-span-4 flex flex-col justify-center px-16 lg:px-44 py-3 gap-3">
 					<div className="grid grid-cols-4 lg:grid-cols-6 bg-white w-full rounded-2xl p-10 py-5">
-						{brands.map((brand, index) => (
-							<div className="p-4 flex items-center justify-center m-0 cursor-pointer border-1">
+						{brands.map((brand, i) => (
+							<div
+								key={`${i}.-*?`}
+								onClick={() => {
+									setModalData(
+										brandProducts.find((p) => p.title === brand.brandName).data
+									);
+									openModal();
+								}}
+								className="p-4 flex items-center justify-center m-0 cursor-pointer border-1">
 								<Image
 									src={`${sources.brand}${brand.guidName}`}
 									width={140}
@@ -38,20 +62,29 @@ export default function Home({
 					</div>
 					<div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
 						<ProductGrid
-							onClick={openModal}
+							onClick={() => {
+								setModalData(newProducts);
+								openModal();
+							}}
 							data={newProducts}
 							title="New Products"
 							size={newProducts.length}
 						/>
 						<ProductGrid
-							onClick={openModal}
+							onClick={() => {
+								setModalData(saleProducts);
+								openModal();
+							}}
 							data={saleProducts}
 							title="Sale Products"
 							size={saleProducts.length}
 						/>
 						{brandProducts.map((brandProduct, i) => (
 							<ProductGrid
-								onClick={openModal}
+								onClick={() => {
+									setModalData(brandProduct.data);
+									openModal();
+								}}
 								key={`${i}.--!`}
 								data={brandProduct.data}
 								title={brandProduct.title}
