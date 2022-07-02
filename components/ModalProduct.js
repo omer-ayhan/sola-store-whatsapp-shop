@@ -13,9 +13,9 @@ export default function ModalProduct({ data, windowProps }) {
 			itemSize={windowProps.height}>
 			{({ key, index, style }) => {
 				const product = data[index];
-				// const sizeNum = (sizes && sizes.split("-").length) || 0;
-				// const oldUnitPrice = oldPrice / sizeNum;
-				// const originalDiscount = oldUnitPrice - singlePrice;
+				const sizeNum = (product.sizes && product.sizes.split("-").length) || 0;
+				const oldUnitPrice = product.oldPrice / sizeNum;
+				const originalDiscount = oldUnitPrice - product.singlePrice;
 				return (
 					<div key={`${key}..${index}`} style={style}>
 						<div
@@ -38,9 +38,26 @@ export default function ModalProduct({ data, windowProps }) {
 								</h1>
 								<p className="text-xl">Sizes: {product.sizes}</p>
 							</div>
-							<p className="col-span-1 items-center text-center text-5xl self-center">
-								<span className="text-3xl">$</span>42
-							</p>
+							<div className="col-span-1 ">
+								{product.oldPrice > 0 && sizeNum ? (
+									<>
+										<h5 className="text-red-600 text-xl text-center">
+											<del className="text-danger fw-bold">
+												${oldUnitPrice * sizeNum} USD
+											</del>
+										</h5>
+										<p className=" items-center text-center text-5xl self-center">
+											<span className="text-3xl">$</span>
+											{product.singlePrice * sizeNum}
+										</p>
+									</>
+								) : (
+									<p className="col-span-1 items-center text-center text-5xl self-center">
+										<span className="text-3xl">$</span>
+										{product.singlePrice * sizeNum}
+									</p>
+								)}
+							</div>
 							<div className="col-span-1 flex justify-center items-center">
 								<Image src="/images/placeholder.jpg" width={80} height={80} />
 							</div>

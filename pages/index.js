@@ -131,6 +131,11 @@ export async function getStaticProps() {
 	);
 
 	return {
-		props: { newProducts, saleProducts, brands, brandProducts },
+		props: {
+			newProducts,
+			saleProducts: saleProducts.reverse(),
+			brands,
+			brandProducts,
+		},
 	};
 }
