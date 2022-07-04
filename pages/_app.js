@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Layout from "layout/Layout";
 
+import StoreProvider from "context/StoreProvider";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
@@ -82,9 +83,11 @@ function MyApp({ Component, pageProps }) {
 					href="/images/logo/favicon/favicon-16x16.jpg"
 				/>
 			</Head>
-			<Layout>
-				<Component {...pageProps} />
-			</Layout>
+			<StoreProvider>
+				<Layout>
+					<Component {...pageProps} />
+				</Layout>
+			</StoreProvider>
 		</>
 	);
 }
