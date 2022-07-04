@@ -74,7 +74,7 @@ export default function Home({
 							title="New Products"
 							size={newProducts.length}
 						/>
-						<ProductGrid
+						{/* <ProductGrid
 							onClick={() => {
 								setModalData(saleProducts);
 								openModal();
@@ -82,7 +82,7 @@ export default function Home({
 							data={saleProducts}
 							title="Sale Products"
 							size={saleProducts.length}
-						/>
+						/> */}
 						{/* {brandProducts.map((brandProduct, i) => (
 							<ProductGrid
 								onClick={() => {
@@ -109,16 +109,21 @@ export default function Home({
 export async function getStaticProps() {
 	const { API_URL, SOURCE_PROOF } = process.env;
 	const { get } = axios;
-	const [{ data: newProducts }, { data: saleProducts }, { data: brands }] =
-		await Promise.all([
-			get(
-				`${API_URL}/api/Product/GetNewProducts?lang=${"tr"}&sourceProof=${SOURCE_PROOF}`
-			),
-			get(
-				`${API_URL}/api/Product/GetSaleProducts?lang=${"tr"}&sourceProof=${SOURCE_PROOF}`
-			),
-			get(`${API_URL}/api/Brand/GetAllBrands?sourceProof=${SOURCE_PROOF}`),
-		]);
+	const [
+		{ data: newProducts },
+
+		// { data: saleProducts },
+
+		{ data: brands },
+	] = await Promise.all([
+		get(
+			`${API_URL}/api/Product/GetNewProducts?lang=${"tr"}&sourceProof=${SOURCE_PROOF}`
+		),
+		// get(
+		// 	`${API_URL}/api/Product/GetSaleProducts?lang=${"tr"}&sourceProof=${SOURCE_PROOF}`
+		// ),
+		get(`${API_URL}/api/Brand/GetAllBrands?sourceProof=${SOURCE_PROOF}`),
+	]);
 	// const brandProducts = [];
 
 	// await Promise.all(
@@ -137,7 +142,8 @@ export async function getStaticProps() {
 	return {
 		props: {
 			newProducts,
-			saleProducts: saleProducts.slice(0, 100).reverse(),
+			// saleProducts: saleProducts.slice(0, 100).reverse(),
+			saleProducts: [],
 			brands,
 			// brandProducts,
 		},
