@@ -13,7 +13,7 @@ export default function Home({
 	newProducts,
 	saleProducts,
 	brands,
-	// brandProducts,
+	brandProducts,
 }) {
 	const { open, closeModal, openModal } = useModal();
 	const [modalData, setModalData] = useState(null);
@@ -44,16 +44,16 @@ export default function Home({
 						{brands.map((brand, i) => (
 							<div
 								key={`${i}.-*?`}
-								// onClick={() => {
-								// 	const brandProduct = brandProducts.find(
-								// 		(p) => p.title === brand.brandName
-								// 	);
-								// 	setModalData({
-								// 		title: brandProduct.title,
-								// 		data: brandProduct.data,
-								// 	});
-								// 	openModal();
-								// }}
+								onClick={() => {
+									const brandProduct = brandProducts.find(
+										(p) => p.title === brand.brandName
+									);
+									setModalData({
+										title: brandProduct.title,
+										data: brandProduct.data,
+									});
+									openModal();
+								}}
 								className="p-4 flex items-center justify-center m-0 cursor-pointer border-1">
 								<Image
 									src={`${sources.brand}${brand.guidName}`}
@@ -67,22 +67,28 @@ export default function Home({
 					<div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
 						<ProductGrid
 							onClick={() => {
-								setModalData(newProducts);
+								setModalData({
+									title: "New Products",
+									data: newProducts,
+								});
 								openModal();
 							}}
 							data={newProducts}
 							title="New Products"
 							size={newProducts.length}
 						/>
-						{/* <ProductGrid
+						<ProductGrid
 							onClick={() => {
-								setModalData(saleProducts);
+								setModalData({
+									title: "Sale Products",
+									data: saleProducts,
+								});
 								openModal();
 							}}
 							data={saleProducts}
 							title="Sale Products"
 							size={saleProducts.length}
-						/> */}
+						/>
 						{/* {brandProducts.map((brandProduct, i) => (
 							<ProductGrid
 								onClick={() => {
@@ -109,43 +115,38 @@ export default function Home({
 export async function getStaticProps() {
 	const { API_URL, SOURCE_PROOF } = process.env;
 	const { get } = axios;
-	const [
-		{ data: newProducts },
+	const [{ data: newProducts }, { data: saleProducts }, { data: brands }] =
+		await Promise.all([
+			get(
+				`${API_URL}/api/Product/GetNewProducts?lang=${"tr"}&sourceProof=${SOURCE_PROOF}`
+			),
+			get(
+				`${API_URL}/api/Product/GetSaleProductsNew?lang=tr&pageNumber=1&pageSize=100&sourceProof=${SOURCE_PROOF}`
+			),
+			get(`${API_URL}/api/Brand/GetAllBrands?sourceProof=${SOURCE_PROOF}`),
+		]);
+	const brandProducts = [];
 
-		// { data: saleProducts },
+	await Promise.all(
+		brands.map(async ({ brandName, brandID }) => {
+			const { data: brandProduct } = await get(
+				`https://api.solastore.com.tr/api/Product/GetSelectedBrandProducts?BrandID=${brandID}&lang=${"tr"}&sourceProof=${SOURCE_PROOF}`
+			);
 
-		{ data: brands },
-	] = await Promise.all([
-		get(
-			`${API_URL}/api/Product/GetNewProducts?lang=${"tr"}&sourceProof=${SOURCE_PROOF}`
-		),
-		// get(
-		// 	`${API_URL}/api/Product/GetSaleProducts?lang=${"tr"}&sourceProof=${SOURCE_PROOF}`
-		// ),
-		get(`${API_URL}/api/Brand/GetAllBrands?sourceProof=${SOURCE_PROOF}`),
-	]);
-	// const brandProducts = [];
-
-	// await Promise.all(
-	// 	brands.map(async ({ brandName, brandID }) => {
-	// 		const { data: brandProduct } = await get(
-	// 			`https://api.solastore.com.tr/api/Product/GetSelectedBrandProducts?BrandID=${brandID}&lang=${"tr"}&sourceProof=${SOURCE_PROOF}`
-	// 		);
-
-	// 		brandProducts.push({
-	// 			data: brandProduct,
-	// 			title: brandName,
-	// 		});
-	// 	})
-	// );
+			brandProducts.push({
+				data: brandProduct,
+				title: brandName,
+			});
+		})
+	);
+	console.log(saleProducts);
 
 	return {
 		props: {
 			newProducts,
-			// saleProducts: saleProducts.slice(0, 100).reverse(),
-			saleProducts: [],
+			saleProducts: saleProducts.item1.reverse(),
 			brands,
-			// brandProducts,
+			brandProducts,
 		},
 	};
 }
