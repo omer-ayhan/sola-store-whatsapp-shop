@@ -8,6 +8,7 @@ import sources from "sources";
 import useModal from "hooks/useModal";
 import CustomModal from "@components/CustomModal";
 import ModalProduct from "@components/ModalProduct";
+import Page from "@components/Page";
 
 export default function Home({
 	newProducts,
@@ -30,14 +31,12 @@ export default function Home({
 	}, []);
 
 	return (
-		<div className="relative w-full">
+		<Page>
 			<CustomModal show={open} onClose={closeModal} title={modalData?.title}>
 				{modalData && (
 					<ModalProduct windowProps={windowProps} data={modalData?.data} />
 				)}
 			</CustomModal>
-			<div className="bg-background-color h-full w-full absolute -z-20" />
-			<div className="bg-[url('/images/bg.png')] bg-repeat opacity-10 h-full w-full absolute -z-10" />
 			<div className="grid grid-flow-col grid-cols-6 z-40 justify-center">
 				<div className="col-span-6 lg:col-span-4 flex flex-col justify-center px-8 lg:px-24 xl:px-32 py-3 gap-3">
 					<div className="grid grid-cols-4 lg:grid-cols-6 bg-white w-full rounded-2xl p-5 md:p-10 py-5">
@@ -108,7 +107,7 @@ export default function Home({
 					<CartLayout />
 				</div>
 			</div>
-		</div>
+		</Page>
 	);
 }
 
@@ -139,7 +138,6 @@ export async function getStaticProps() {
 			});
 		})
 	);
-	console.log(saleProducts);
 
 	return {
 		props: {

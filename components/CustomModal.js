@@ -1,6 +1,7 @@
 import { StoreContext } from "context/StoreProvider";
 import useDetectOutside from "hooks/useDetectOutside";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useContext, useLayoutEffect, useRef, useState } from "react";
 import Drawer from "react-drag-drawer";
 import { FaArrowLeft } from "react-icons/fa";
@@ -13,7 +14,7 @@ export default function CustomModal({ show, onClose, children, title }) {
 
 	return (
 		<Drawer open={show}>
-			<div ref={modalRef} className="grid grid-cols-1 bg-white z-50 ">
+			<div ref={modalRef} className="grid grid-cols-1 bg-white z-50">
 				<div className="flex justify-between items-center bg-primary-green w-full py-3 px-4">
 					<div className="flex items-center gap-3">
 						<button
@@ -25,16 +26,24 @@ export default function CustomModal({ show, onClose, children, title }) {
 					</div>
 					<button
 						onClick={onClose}
-						className="p-3 py-2 border-2 text-white border-[#80c0b4] rounded-md hover:border-white transition-colors duration-250 ease-in-out">
+						className="hidden lg:block p-3 py-2 border-2 text-white border-[#80c0b4] rounded-md hover:border-white transition-colors duration-250 ease-in-out">
 						Cart{" "}
 						<span className="px-2 mx-1 text-xs rounded-md bg-[#07a884]">
 							{state.cartsNum}
 						</span>
 					</button>
+					<Link href="/cart">
+						<button
+							onClick={onClose}
+							className="lg:hidden p-3 py-2 border-2 text-white border-[#80c0b4] rounded-md hover:border-white transition-colors duration-250 ease-in-out">
+							Cart{" "}
+							<span className="px-2 mx-1 text-xs rounded-md bg-[#07a884]">
+								{state.cartsNum}
+							</span>
+						</button>
+					</Link>
 				</div>
-				<div className="bg-white w-full h-[870px] overflow-y-scroll">
-					{children}
-				</div>
+				<div className="bg-white w-full h-full overflow-hidden">{children}</div>
 			</div>
 		</Drawer>
 	);

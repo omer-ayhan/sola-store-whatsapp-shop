@@ -23,12 +23,20 @@ export default function Navbar() {
 				<button className="px-4 text-sm text-white border-x-1 border-x-[#2224261a] border-solid h-full hover:bg-[#ffffff1c] transition-colors duration-300 ease-in-out">
 					EN
 				</button>
-				<button className="flex items-center justify-center px-4 text-sm text-white border-r-1 border-x-[#2224261a] border-solid h-full hover:bg-[#ffffff1c] transition-colors duration-300 ease-in-out">
+				<button className="hidden lg:flex items-center justify-center px-4 text-sm text-white border-r-1 border-x-[#2224261a] border-solid h-full hover:bg-[#ffffff1c] transition-colors duration-300 ease-in-out">
 					Cart{" "}
 					<span className="px-2 mx-1 text-xs rounded-md bg-[#07a884]">
 						{state.cartsNum}
 					</span>
 				</button>
+				<Link href="/cart">
+					<button className="flex lg:hidden items-center justify-center px-4 text-sm text-white border-r-1 border-x-[#2224261a] border-solid h-full hover:bg-[#ffffff1c] transition-colors duration-300 ease-in-out">
+						Cart{" "}
+						<span className="px-2 mx-1 text-xs rounded-md bg-[#07a884]">
+							{state.cartsNum}
+						</span>
+					</button>
+				</Link>
 			</div>
 		</div>
 	);
