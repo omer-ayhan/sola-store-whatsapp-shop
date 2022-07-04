@@ -1,23 +1,37 @@
+import { StoreContext } from "context/StoreProvider";
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { FixedSizeList } from "react-window";
 import sources from "sources";
 
 export default function ModalProduct({ data, windowProps }) {
+	const { cartActions, state } = useContext(StoreContext);
+	const { addToCartAction } = cartActions;
+
+	const handleAddToCart = (productId, productName) => {
+		addToCartAction({
+			userId: state.uid,
+			productId,
+			productName,
+			quantity: 1,
+		});
+	};
 	return (
 		<FixedSizeList
 			height={windowProps.height}
 			width={600}
 			itemCount={data.length}
 			itemSize={windowProps.height}>
-			{({ key, index, style }) => {
+			{({ index, style }) => {
 				const product = data[index];
 				const sizeNum = (product.sizes && product.sizes.split("-").length) || 0;
 				const oldUnitPrice = product.oldPrice / sizeNum;
-				const originalDiscount = oldUnitPrice - product.singlePrice;
+				// const originalDiscount = oldUnitPrice - product.singlePrice;
 				return (
-					<div key={`${key}..${index}`} style={style}>
+					<div
+						key={`${product.masterProductID}..${product.masterProductID}`}
+						style={style}>
 						<div
 							style={{
 								height: `${windowProps.height - 150}px`,
@@ -62,7 +76,14 @@ export default function ModalProduct({ data, windowProps }) {
 								<Image src="/images/placeholder.jpg" width={80} height={80} />
 							</div>
 							<div className="col-span-3 flex justify-center">
-								<button className="bg-primary-green p-3 py-2 rounded-md text-sm text-white font-semibold">
+								<button
+									onClick={() =>
+										handleAddToCart(
+											product.masterProductID,
+											product.productShortName
+										)
+									}
+									className="bg-primary-green p-3 py-2 rounded-md text-sm text-white font-semibold">
 									Add To Cart
 								</button>
 								{/* <div className="col-span-2 flex items-center">

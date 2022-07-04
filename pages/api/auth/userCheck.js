@@ -1,8 +1,13 @@
 import axios from "axios";
 import { saveCookie } from "lib/helpers";
 
-export default async function createUserId(req, res) {
+export default async function userCheck(req, res) {
 	try {
+		const userData = req.cookies["user"] || false;
+		if (userData) {
+			res.status(200).json(userData);
+			return;
+		}
 		const { data } = await axios.get(
 			`https://api.solastore.com.tr/api/Logon/createUserGuidID?sourceProof=${process.env.SOURCE_PROOF}`
 		);

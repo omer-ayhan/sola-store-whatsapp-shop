@@ -1,9 +1,13 @@
 import Head from "next/head";
 import { ToastContainer } from "react-toastify";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 import Layout from "layout/Layout";
 import StoreProvider from "context/StoreProvider";
 import "../styles/globals.css";
+import "react-toastify/dist/ReactToastify.css";
+
+const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
 	return (
@@ -86,7 +90,7 @@ function MyApp({ Component, pageProps }) {
 			</Head>
 			<ToastContainer
 				position="top-right"
-				autoClose={5000}
+				autoClose={2000}
 				hideProgressBar={false}
 				newestOnTop={false}
 				draggable={false}
@@ -94,11 +98,13 @@ function MyApp({ Component, pageProps }) {
 				closeOnClick
 				pauseOnHover
 			/>
-			<StoreProvider>
-				<Layout>
-					<Component {...pageProps} />
-				</Layout>
-			</StoreProvider>
+			<QueryClientProvider client={queryClient}>
+				<StoreProvider>
+					<Layout>
+						<Component {...pageProps} />
+					</Layout>
+				</StoreProvider>
+			</QueryClientProvider>
 		</>
 	);
 }

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext } from "react";
-import { useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 
 import { SET_CART_DATA } from "context/types";
 import { StoreContext } from "context/StoreProvider";
@@ -16,29 +16,27 @@ const fetchCart = async ({ userId }) => {
 	return cartData;
 };
 
-export default function useCart(dispatch) {
-	const { state } = useContext(StoreContext);
-	const { isLoading: isCartLoading, refetchQueries: cartRefetch } =
-		useQueryClient(
-			`cart_api`,
-			() =>
-				fetchCart({
-					userId: state.uid,
-				}),
-			{
-				onSuccess: async ({ data }) => {
-					dispatch({
-						type: SET_CART_DATA,
-						payload: data,
-					});
-				},
-			}
-		);
+export default function useCart(dispatch, uid) {
+	const { isLoading: isCartLoading, refetch: cartRefetch } = useQuery(
+		`cartData-${uid}`,
+		() =>
+			fetchCart({
+				userId: uid,
+			}),
+		{
+			onSuccess: async (data) => {
+				dispatch({
+					type: SET_CART_DATA,
+					payload: data,
+				});
+			},
+		}
+	);
 
-	const { mutate } = useQueryMutation("add_to_cart_action");
+	const { mutate } = useQueryMutation("add_to_cart");
 
 	const addToCartAction = (creds) => {
-		const { userId, productId, quantity } = creds;
+		const { userId, productId, productName, quantity } = creds;
 		mutate(
 			{
 				url: `/api/cart/addToCart?user=${userId}&productID=${productId}&quantity=${quantity}`,
@@ -46,7 +44,7 @@ export default function useCart(dispatch) {
 			{
 				onSuccess: () => {
 					cartRefetch();
-					notify("success", "Product added to cart");
+					notify("success", `${productName} added to cart`);
 				},
 			}
 		);
