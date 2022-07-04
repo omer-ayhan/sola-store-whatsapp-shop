@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useQuery } from "react-query";
 
 import { SET_CART_DATA } from "context/types";

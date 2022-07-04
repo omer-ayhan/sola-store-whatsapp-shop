@@ -3,7 +3,7 @@ import { createContext, useEffect, useReducer } from "react";
 
 import initialState from "./store";
 import reducer from "./reducer";
-import { SIGN_IN_USER } from "./types";
+import { SET_CART_NUM, SIGN_IN_USER } from "./types";
 import { notify } from "@components/Toast";
 import useCart from "hooks/useCart";
 
@@ -28,6 +28,17 @@ export default function StoreProvider({ children }) {
 	useEffect(() => {
 		handleUser();
 	}, []);
+
+	useEffect(() => {
+		dispatch({
+			type: SET_CART_NUM,
+			payload: state.cartItems
+				? state.cartItems.reduce((quantity, currQty) => {
+						return quantity + currQty.quantity;
+				  }, 0)
+				: 0,
+		});
+	}, [state.cartItems]);
 
 	return (
 		<StoreContext.Provider

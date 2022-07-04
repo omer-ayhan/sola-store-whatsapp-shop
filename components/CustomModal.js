@@ -1,10 +1,12 @@
+import { StoreContext } from "context/StoreProvider";
 import useDetectOutside from "hooks/useDetectOutside";
 import Image from "next/image";
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useContext, useLayoutEffect, useRef, useState } from "react";
 import Drawer from "react-drag-drawer";
 import { FaArrowLeft } from "react-icons/fa";
 
 export default function CustomModal({ show, onClose, children, title }) {
+	const { state } = useContext(StoreContext);
 	const modalRef = useRef();
 
 	useDetectOutside(modalRef, onClose);
@@ -25,7 +27,9 @@ export default function CustomModal({ show, onClose, children, title }) {
 						onClick={onClose}
 						className="p-3 py-2 border-2 text-white border-[#80c0b4] rounded-md hover:border-white transition-colors duration-250 ease-in-out">
 						Cart{" "}
-						<span className="px-2 mx-1 text-xs rounded-md bg-[#07a884]">6</span>
+						<span className="px-2 mx-1 text-xs rounded-md bg-[#07a884]">
+							{state.cartsNum}
+						</span>
 					</button>
 				</div>
 				<div className="bg-white w-full h-[870px] overflow-y-scroll">

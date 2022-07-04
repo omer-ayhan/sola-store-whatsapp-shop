@@ -1,4 +1,4 @@
-import { SET_CART_DATA, SIGN_IN_USER } from "./types";
+import { SET_CART_DATA, SET_CART_NUM, SIGN_IN_USER } from "./types";
 
 const reducer = (state, action) => {
 	const { type, payload } = action;
@@ -14,6 +14,11 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				uid: payload,
+			};
+		case SET_CART_NUM:
+			return {
+				...state,
+				cartsNum: payload,
 			};
 		default:
 			return state;
