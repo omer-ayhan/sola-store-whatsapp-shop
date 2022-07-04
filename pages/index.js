@@ -39,8 +39,8 @@ export default function Home({
 			<div className="bg-background-color h-full w-full absolute -z-20" />
 			<div className="bg-[url('/images/bg.png')] bg-repeat opacity-10 h-full w-full absolute -z-10" />
 			<div className="grid grid-flow-col grid-cols-6 z-40 justify-center">
-				<div className="col-span-6 lg:col-span-4 flex flex-col justify-center px-16 lg:px-44 py-3 gap-3">
-					<div className="grid grid-cols-4 lg:grid-cols-6 bg-white w-full rounded-2xl p-10 py-5">
+				<div className="col-span-6 lg:col-span-4 flex flex-col justify-center px-8 lg:px-24 xl:px-32 py-3 gap-3">
+					<div className="grid grid-cols-4 lg:grid-cols-6 bg-white w-full rounded-2xl p-5 md:p-10 py-5">
 						{brands.map((brand, i) => (
 							<div
 								key={`${i}.-*?`}
@@ -54,7 +54,7 @@ export default function Home({
 									});
 									openModal();
 								}}
-								className="p-4 flex items-center justify-center m-0 cursor-pointer border-1">
+								className="p-2 lg:p-4 flex items-center justify-center m-0 cursor-pointer border-1">
 								<Image
 									src={`${sources.brand}${brand.guidName}`}
 									width={140}
@@ -64,7 +64,7 @@ export default function Home({
 							</div>
 						))}
 					</div>
-					<div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+					<div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
 						<ProductGrid
 							onClick={() => {
 								setModalData({
@@ -104,7 +104,7 @@ export default function Home({
 					</div>
 				</div>
 
-				<div className="col-span-2">
+				<div className="col-span-2 hidden lg:block">
 					<CartLayout />
 				</div>
 			</div>
@@ -134,7 +134,7 @@ export async function getStaticProps() {
 			);
 
 			brandProducts.push({
-				data: brandProduct,
+				data: brandProduct.reverse(),
 				title: brandName,
 			});
 		})

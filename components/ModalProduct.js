@@ -52,10 +52,11 @@ export default function ModalProduct({ data, windowProps }) {
 				return (
 					<div
 						key={`${product.masterProductID}..${product.masterProductID}`}
+						className="flex flex-col items-center justify-center"
 						style={style}>
 						<div
 							style={{
-								height: `${windowProps.height - 150}px`,
+								height: `${windowProps.height}px`,
 							}}
 							className="relative w-full">
 							<Image

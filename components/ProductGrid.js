@@ -13,7 +13,7 @@ export default function ProductGrid({ data, title, size, onClick }) {
 				<div
 					onClick={onClick}
 					key={`${i}.!!`}
-					className="relative col-span-2 w-full h-52 cursor-pointer rounded-lg overflow-hidden">
+					className="relative col-span-2 w-full h-[300px] lg:h-52 cursor-pointer rounded-lg overflow-hidden">
 					{i + 1 === gridSize && (
 						<div
 							style={{
