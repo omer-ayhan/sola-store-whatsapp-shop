@@ -67,7 +67,6 @@ export default function useCart(dispatch, uid) {
 
 	const incrementQuantity = (creds) => {
 		const { userId, productId } = creds;
-		console.log("increase!!!", creds);
 		mutate(
 			{
 				url: `/api/cart/increaseProductCount?user=${userId}&ProductID=${productId}`,

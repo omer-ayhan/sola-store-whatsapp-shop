@@ -13,7 +13,7 @@ export default function Home({
 	newProducts,
 	saleProducts,
 	brands,
-	brandProducts,
+	// brandProducts,
 }) {
 	const { open, closeModal, openModal } = useModal();
 	const [modalData, setModalData] = useState(null);
@@ -44,16 +44,16 @@ export default function Home({
 						{brands.map((brand, i) => (
 							<div
 								key={`${i}.-*?`}
-								onClick={() => {
-									const brandProduct = brandProducts.find(
-										(p) => p.title === brand.brandName
-									);
-									setModalData({
-										title: brandProduct.title,
-										data: brandProduct.data,
-									});
-									openModal();
-								}}
+								// onClick={() => {
+								// 	const brandProduct = brandProducts.find(
+								// 		(p) => p.title === brand.brandName
+								// 	);
+								// 	setModalData({
+								// 		title: brandProduct.title,
+								// 		data: brandProduct.data,
+								// 	});
+								// 	openModal();
+								// }}
 								className="p-4 flex items-center justify-center m-0 cursor-pointer border-1">
 								<Image
 									src={`${sources.brand}${brand.guidName}`}
@@ -119,27 +119,27 @@ export async function getStaticProps() {
 			),
 			get(`${API_URL}/api/Brand/GetAllBrands?sourceProof=${SOURCE_PROOF}`),
 		]);
-	const brandProducts = [];
+	// const brandProducts = [];
 
-	await Promise.all(
-		brands.map(async ({ brandName, brandID }) => {
-			const { data: brandProduct } = await get(
-				`https://api.solastore.com.tr/api/Product/GetSelectedBrandProducts?BrandID=${brandID}&lang=${"tr"}&sourceProof=${SOURCE_PROOF}`
-			);
+	// await Promise.all(
+	// 	brands.map(async ({ brandName, brandID }) => {
+	// 		const { data: brandProduct } = await get(
+	// 			`https://api.solastore.com.tr/api/Product/GetSelectedBrandProducts?BrandID=${brandID}&lang=${"tr"}&sourceProof=${SOURCE_PROOF}`
+	// 		);
 
-			brandProducts.push({
-				data: brandProduct,
-				title: brandName,
-			});
-		})
-	);
+	// 		brandProducts.push({
+	// 			data: brandProduct,
+	// 			title: brandName,
+	// 		});
+	// 	})
+	// );
 
 	return {
 		props: {
 			newProducts,
 			saleProducts: saleProducts.slice(0, 100).reverse(),
 			brands,
-			brandProducts,
+			// brandProducts,
 		},
 	};
 }
