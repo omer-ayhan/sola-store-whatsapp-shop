@@ -43,9 +43,11 @@ export default function ModalProduct({ data, windowProps }) {
 				const sizeNum = (product.sizes && product.sizes.split("-").length) || 0;
 				const oldUnitPrice = product.oldPrice / sizeNum;
 				// const originalDiscount = oldUnitPrice - product.singlePrice;
-				const cartItem = state.cartItems.find(
-					(cart) => cart.productID === Number(product.masterProductID)
-				);
+				const cartItem =
+					!!state.cartItems.length &&
+					state.cartItems.find(
+						(cart) => cart.productID === Number(product.masterProductID)
+					);
 
 				return (
 					<div
