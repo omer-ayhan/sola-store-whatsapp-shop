@@ -7,7 +7,7 @@ import sources from "sources";
 
 export default function ModalProduct({ data, windowProps }) {
 	const { cartActions, state } = useContext(StoreContext);
-	const { addToCartAction } = cartActions;
+	const { addToCartAction, incrementQuantity, decrementQuantity } = cartActions;
 
 	const handleAddToCart = (productId, productName) => {
 		addToCartAction({
@@ -17,6 +17,21 @@ export default function ModalProduct({ data, windowProps }) {
 			quantity: 1,
 		});
 	};
+
+	const handleDecrement = (productId) => {
+		decrementQuantity({
+			productId,
+			userId: state.uid,
+		});
+	};
+
+	const handleIncrement = (productId) => {
+		incrementQuantity({
+			productId,
+			userId: state.uid,
+		});
+	};
+
 	return (
 		<FixedSizeList
 			height={windowProps.height}
@@ -28,6 +43,10 @@ export default function ModalProduct({ data, windowProps }) {
 				const sizeNum = (product.sizes && product.sizes.split("-").length) || 0;
 				const oldUnitPrice = product.oldPrice / sizeNum;
 				// const originalDiscount = oldUnitPrice - product.singlePrice;
+				const cartItem = state.cartItems.find(
+					(cart) => cart.productID === Number(product.masterProductID)
+				);
+
 				return (
 					<div
 						key={`${product.masterProductID}..${product.masterProductID}`}
@@ -76,27 +95,34 @@ export default function ModalProduct({ data, windowProps }) {
 								<Image src="/images/placeholder.jpg" width={80} height={80} />
 							</div>
 							<div className="col-span-3 flex justify-center">
-								<button
-									onClick={() =>
-										handleAddToCart(
-											product.masterProductID,
-											product.productShortName
-										)
-									}
-									className="bg-primary-green p-3 py-2 rounded-md text-sm text-white font-semibold">
-									Add To Cart
-								</button>
-								{/* <div className="col-span-2 flex items-center">
-									<button className="col-span-1 p-3 border-1 h-10 rounded-l-md">
-										<FaMinus width={24} height={24} />
+								{cartItem ? (
+									<div className="col-span-2 flex items-center">
+										<button
+											onClick={() => handleDecrement(product.masterProductID)}
+											className="col-span-1 p-3 border-1 h-10 rounded-l-md">
+											<FaMinus width={24} height={24} />
+										</button>
+										<p className="col-span-1 p-3 px-4 bg-primary-green h-10 grid place-content-center text-white">
+											{cartItem.quantity}
+										</p>
+										<button
+											onClick={() => handleIncrement(product.masterProductID)}
+											className="col-span-1 p-3 border-1 h-10 rounded-r-md">
+											<FaPlus width={24} height={24} />
+										</button>
+									</div>
+								) : (
+									<button
+										onClick={() =>
+											handleAddToCart(
+												product.masterProductID,
+												product.productShortName
+											)
+										}
+										className="bg-primary-green p-3 py-2 rounded-md text-sm text-white font-semibold">
+										Add To Cart
 									</button>
-									<p className="col-span-1 p-3 px-4 bg-primary-green h-10 grid place-content-center text-white">
-										1
-									</p>
-									<button className="col-span-1 p-3 border-1 h-10 rounded-r-md">
-										<FaPlus width={24} height={24} />
-									</button>
-								</div> */}
+								)}
 							</div>
 						</div>
 					</div>
