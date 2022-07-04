@@ -31,9 +31,9 @@ export default function Home({
 
 	return (
 		<div className="relative w-full">
-			<CustomModal show={open} onClose={closeModal}>
+			<CustomModal show={open} onClose={closeModal} title={modalData?.title}>
 				{modalData && (
-					<ModalProduct windowProps={windowProps} data={modalData} />
+					<ModalProduct windowProps={windowProps} data={modalData?.data} />
 				)}
 			</CustomModal>
 			<div className="bg-background-color h-full w-full absolute -z-20" />
@@ -45,9 +45,13 @@ export default function Home({
 							<div
 								key={`${i}.-*?`}
 								onClick={() => {
-									setModalData(
-										brandProducts.find((p) => p.title === brand.brandName).data
+									const brandProduct = brandProducts.find(
+										(p) => p.title === brand.brandName
 									);
+									setModalData({
+										title: brandProduct.title,
+										data: brandProduct.data,
+									});
 									openModal();
 								}}
 								className="p-4 flex items-center justify-center m-0 cursor-pointer border-1">
@@ -79,7 +83,7 @@ export default function Home({
 							title="Sale Products"
 							size={saleProducts.length}
 						/>
-						{brandProducts.map((brandProduct, i) => (
+						{/* {brandProducts.map((brandProduct, i) => (
 							<ProductGrid
 								onClick={() => {
 									setModalData(brandProduct.data);
@@ -90,7 +94,7 @@ export default function Home({
 								title={brandProduct.title}
 								size={brandProduct.data.length}
 							/>
-						))}
+						))} */}
 					</div>
 				</div>
 
@@ -133,7 +137,7 @@ export async function getStaticProps() {
 	return {
 		props: {
 			newProducts,
-			saleProducts: saleProducts.reverse(),
+			saleProducts: saleProducts.slice(0, 100).reverse(),
 			brands,
 			brandProducts,
 		},

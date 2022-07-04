@@ -4,7 +4,7 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import Drawer from "react-drag-drawer";
 import { FaArrowLeft } from "react-icons/fa";
 
-export default function CustomModal({ show, onClose, children }) {
+export default function CustomModal({ show, onClose, children, title }) {
 	const modalRef = useRef();
 
 	useDetectOutside(modalRef, onClose);
@@ -19,7 +19,7 @@ export default function CustomModal({ show, onClose, children }) {
 							className="p-3 border-2 border-[#80c0b4] rounded-md hover:border-white transition-colors duration-250 ease-in-out">
 							<FaArrowLeft width={25} height={25} color="white" />
 						</button>
-						<p className="text-lg text-white">BIEN</p>
+						<p className="text-lg text-white">{title}</p>
 					</div>
 					<button
 						onClick={onClose}

@@ -1,6 +1,7 @@
 import Head from "next/head";
-import Layout from "layout/Layout";
+import { ToastContainer } from "react-toastify";
 
+import Layout from "layout/Layout";
 import StoreProvider from "context/StoreProvider";
 import "../styles/globals.css";
 
@@ -83,6 +84,16 @@ function MyApp({ Component, pageProps }) {
 					href="/images/logo/favicon/favicon-16x16.jpg"
 				/>
 			</Head>
+			<ToastContainer
+				position="top-right"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				draggable={false}
+				pauseOnVisibilityChange
+				closeOnClick
+				pauseOnHover
+			/>
 			<StoreProvider>
 				<Layout>
 					<Component {...pageProps} />
