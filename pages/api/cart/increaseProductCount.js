@@ -2,6 +2,7 @@ import axios from "axios";
 
 export default async function increaseProductCount(req, res) {
 	const { user, ProductID } = req.query;
+
 	try {
 		const { data } = await axios.post(
 			`https://api.solastore.com.tr/api/Order/IncreaseProductCountInChart?UserID=${user}&ProductID=${ProductID}&sourceProof=${process.env.SOURCE_PROOF}`,
