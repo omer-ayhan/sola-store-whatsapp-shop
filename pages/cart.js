@@ -5,7 +5,9 @@ import React from "react";
 export default function cart() {
 	return (
 		<Page className="h-screen">
-			<CartLayout />
+			<div className="px-4">
+				<CartLayout />
+			</div>
 		</Page>
 	);
 }

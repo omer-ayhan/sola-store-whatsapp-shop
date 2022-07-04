@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
 import CartLayout from "@components/CartLayout";
 import ProductGrid from "@components/ProductGrid";
 import sources from "sources";
 import useModal from "hooks/useModal";
-import CustomModal from "@components/CustomModal";
-import ModalProduct from "@components/ModalProduct";
-import Page from "@components/Page";
+const CustomModal = dynamic(() => import("@components/CustomModal"));
+const ModalProduct = dynamic(() => import("@components/ModalProduct"));
+const Page = dynamic(() => import("@components/Page"));
+// import CustomModal from "@components/CustomModal";
+// import ModalProduct from "@components/ModalProduct";
+// import Page from "@components/Page";
 
 export default function Home({
 	newProducts,

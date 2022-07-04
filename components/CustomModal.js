@@ -14,7 +14,7 @@ export default function CustomModal({ show, onClose, children, title }) {
 
 	return (
 		<Drawer open={show}>
-			<div ref={modalRef} className="grid grid-cols-1 bg-white z-50">
+			<div ref={modalRef} className="grid grid-cols-1 bg-white z-50 h-screen">
 				<div className="flex justify-between items-center bg-primary-green w-full py-3 px-4">
 					<div className="flex items-center gap-3">
 						<button
@@ -43,7 +43,7 @@ export default function CustomModal({ show, onClose, children, title }) {
 						</button>
 					</Link>
 				</div>
-				<div className="bg-white w-full h-full overflow-hidden">{children}</div>
+				<div className="bg-white w-full">{children}</div>
 			</div>
 		</Drawer>
 	);
