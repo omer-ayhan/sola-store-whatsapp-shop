@@ -6,10 +6,12 @@ const PaymentModal = dynamic(() => import("@components/PaymentModal"));
 import { StoreContext } from "context/StoreProvider";
 import useModal from "hooks/useModal";
 import CartItem from "@components/CartItem";
+import WarningModal from "@components/WarningModal";
 
 export default function CartLayout() {
 	const { open, closeModal, openModal } = useModal({
 		payment: false,
+		warning: false,
 	});
 	const { state, cartActions } = useContext(StoreContext);
 	const { emptyCart } = cartActions;
@@ -19,14 +21,29 @@ export default function CartLayout() {
 		state.cartItems.length > 0 &&
 		state.cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-	const handleEmptyCart = () => emptyCart(state.cartItems);
+	const handleEmptyCart = () => openModal("warning");
 
-	const handlePayment = () => {
-		openModal();
+	const handlePayment = () => openModal("payment");
+
+	const handlePositiveClick = () => {
+		emptyCart(state.cartItems);
+		closeModal("warning");
 	};
+	const handleNegativeClick = () => closeModal("warning");
+
 	return (
 		<>
-			<PaymentModal show={open.payment} onClose={closeModal} />
+			<PaymentModal show={open.payment} onClose={() => closeModal("payment")} />
+			<WarningModal
+				show={open.warning}
+				onClose={() => closeModal("warning")}
+				modalTitle="Are you sure?"
+				warningTitle="Are you sure you want to delete all items in your cart?"
+				positiveText="Yes"
+				negativeText="No"
+				onPositiveClick={handlePositiveClick}
+				onNegativeClick={handleNegativeClick}
+			/>
 
 			<div className="w-full flex flex-col py-16 gap-3">
 				<div className="flex-1 rounded-lg bg-white max-w-sm p-3 py-1 shadow-md text-center">
