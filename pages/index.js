@@ -7,12 +7,9 @@ import CartLayout from "layout/CartLayout";
 import ProductGrid from "@components/ProductGrid";
 import sources from "sources";
 import useModal from "hooks/useModal";
-const CustomModal = dynamic(() => import("@components/CustomModal"));
+import ProductModal from "@components/ProductModal";
 const ModalProduct = dynamic(() => import("@components/ModalProduct"));
 const Page = dynamic(() => import("@components/Page"));
-// import CustomModal from "@components/CustomModal";
-// import ModalProduct from "@components/ModalProduct";
-// import Page from "@components/Page";
 
 export default function Home({
 	newProducts,
@@ -36,11 +33,11 @@ export default function Home({
 
 	return (
 		<Page>
-			<CustomModal show={open} onClose={closeModal} title={modalData?.title}>
+			<ProductModal show={open} onClose={closeModal} title={modalData?.title}>
 				{modalData && (
 					<ModalProduct windowProps={windowProps} data={modalData?.data} />
 				)}
-			</CustomModal>
+			</ProductModal>
 			<div className="grid grid-flow-col grid-cols-6 z-40 justify-center">
 				<div className="col-span-6 lg:col-span-4 flex flex-col justify-center px-1 sm:px-8 md:px-24 xl:px-32 py-3 gap-3">
 					<div className="grid grid-cols-4 lg:grid-cols-6 bg-white w-full rounded-2xl p-5 md:p-10 py-5">

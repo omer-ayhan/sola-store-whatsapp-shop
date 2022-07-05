@@ -3,7 +3,7 @@ import { createContext, useEffect, useReducer } from "react";
 
 import initialState from "./store";
 import reducer from "./reducer";
-import { SET_CART_NUM, SIGN_IN_USER } from "./types";
+import { SET_CART_NUM, SET_SALES_TEAM_DATA, SIGN_IN_USER } from "./types";
 import { notify } from "@components/Toast";
 import useCart from "hooks/useCart";
 
@@ -25,8 +25,17 @@ export default function StoreProvider({ children }) {
 		}
 	};
 
+	const handleSalesTeam = async () => {
+		const { data } = await axios.get("/api/payment/getSalesTeam");
+		dispatch({
+			type: SET_SALES_TEAM_DATA,
+			payload: data,
+		});
+	};
+
 	useEffect(() => {
 		handleUser();
+		handleSalesTeam();
 	}, []);
 
 	useEffect(() => {

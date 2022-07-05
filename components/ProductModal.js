@@ -6,7 +6,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { StoreContext } from "context/StoreProvider";
 import useDetectOutside from "hooks/useDetectOutside";
 
-function CustomModal({ show, onClose, children, title }) {
+function ProductModal({ show, onClose, children, title }) {
 	const { state } = useContext(StoreContext);
 	const modalRef = useRef();
 
@@ -49,4 +49,4 @@ function CustomModal({ show, onClose, children, title }) {
 	);
 }
 
-export default memo(CustomModal);
+export default memo(ProductModal);

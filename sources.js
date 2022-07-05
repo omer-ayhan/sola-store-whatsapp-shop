@@ -6,4 +6,5 @@ export default {
 	campaign: "https://solastore.com.tr/img/MainCampaingn/",
 	brand: "https://solastore.com.tr/img/Brand/",
 	saleTeam: "https://solastore.com.tr/img/Representative/",
+	DEF_SELLER: 9999,
 };

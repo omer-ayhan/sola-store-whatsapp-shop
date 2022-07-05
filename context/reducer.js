@@ -1,4 +1,10 @@
-import { SET_CART_DATA, SET_CART_NUM, SIGN_IN_USER } from "./types";
+import {
+	SET_CART_DATA,
+	SET_CART_NUM,
+	SET_COMPLETED_CART,
+	SET_SALES_TEAM_DATA,
+	SIGN_IN_USER,
+} from "./types";
 
 const reducer = (state, action) => {
 	const { type, payload } = action;
@@ -9,7 +15,6 @@ const reducer = (state, action) => {
 				...state,
 				cartItems: payload,
 			};
-
 		case SIGN_IN_USER:
 			return {
 				...state,
@@ -19,6 +24,16 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				cartsNum: payload,
+			};
+		case SET_COMPLETED_CART:
+			return {
+				...state,
+				completedCart: payload,
+			};
+		case SET_SALES_TEAM_DATA:
+			return {
+				...state,
+				salesTeamData: payload,
 			};
 		default:
 			return state;

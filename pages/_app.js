@@ -6,6 +6,7 @@ import Layout from "layout/Layout";
 import StoreProvider from "context/StoreProvider";
 import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
 
 const queryClient = new QueryClient();
 
