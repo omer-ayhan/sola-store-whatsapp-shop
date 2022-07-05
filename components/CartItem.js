@@ -44,7 +44,10 @@ export default function CartItem({ data }) {
 			<div className="col-span-3 p-2">
 				<p className="uppercase font-semibold">{productShortName}</p>
 				{oldPrice > 0 ? (
-					<p className="uppercase">${oldPrice}</p>
+					<>
+						<del className="uppercase text-red-700">${oldPrice}</del>
+						<p className="uppercase">${price}</p>
+					</>
 				) : (
 					<p className="uppercase">${price}</p>
 				)}

@@ -1,4 +1,4 @@
-import CartLayout from "@components/CartLayout";
+import CartLayout from "layout/CartLayout";
 import Page from "@components/Page";
 import React from "react";
 

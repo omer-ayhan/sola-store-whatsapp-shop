@@ -54,12 +54,12 @@ export default function useCart(dispatch, uid) {
 		const { userId, productId } = creds;
 		mutate(
 			{
-				url: `/api/cart/removeFromCart?user=${userId}&ProductID=${productId}`,
+				url: `/api/cart/removeFromCart?VisitorID=${userId}&ProductID=${productId}`,
 			},
 			{
 				onSuccess: () => {
 					cartRefetch();
-					notify("success", "Product added to cart");
+					notify("success", "Product removed from cart");
 				},
 			}
 		);
@@ -91,8 +91,28 @@ export default function useCart(dispatch, uid) {
 					cartRefetch();
 					notify("error", "Decreased Quantity");
 				},
+				onError: () => {
+					notify("error", "Error Decreasing Quantity");
+				},
 			}
 		);
+	};
+
+	const emptyCart = (carts) => {
+		try {
+			carts.map((cart) =>
+				mutate({
+					url: `/api/cart/removeFromCart?VisitorID=${cart.memberID}&ProductID=${cart.productID}`,
+				})
+			);
+			dispatch({
+				type: SET_CART_DATA,
+				payload: [],
+			});
+			notify("success", "Cart emptied");
+		} catch (error) {
+			notify("error", error);
+		}
 	};
 
 	const cartActions = {
@@ -101,6 +121,7 @@ export default function useCart(dispatch, uid) {
 		incrementQuantity,
 		decrementQuantity,
 		cartRefetch,
+		emptyCart,
 	};
 
 	return {

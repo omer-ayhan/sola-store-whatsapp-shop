@@ -44,9 +44,7 @@ function ModalProduct({ data, windowProps }) {
 						(cart) => cart.productID === Number(product.masterProductID)
 					);
 				return (
-					<div
-						key={`${product.masterProductID}..${product.masterProductID}`}
-						className="flex flex-col justify-start">
+					<div key={`${i}..${i}`} className="flex flex-col justify-start">
 						<div
 							style={{
 								height: `${windowProps.height - 130}px`,

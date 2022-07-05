@@ -3,7 +3,7 @@ import axios from "axios";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
-import CartLayout from "@components/CartLayout";
+import CartLayout from "layout/CartLayout";
 import ProductGrid from "@components/ProductGrid";
 import sources from "sources";
 import useModal from "hooks/useModal";

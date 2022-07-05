@@ -1,10 +1,19 @@
 import { StoreContext } from "context/StoreProvider";
 import React, { useContext } from "react";
 import { FaBoxOpen, FaTrash, FaWhatsapp } from "react-icons/fa";
-import CartItem from "./CartItem";
+import CartItem from "../components/CartItem";
 
 export default function CartLayout() {
-	const { state } = useContext(StoreContext);
+	const { state, cartActions } = useContext(StoreContext);
+	const { emptyCart } = cartActions;
+	const isCartEmpty = state.cartItems.length === 0;
+
+	const handleEmptyCart = () => emptyCart(state.cartItems);
+
+	const totalPrice = state.cartItems.reduce(
+		(acc, item) => acc + item.price * item.quantity,
+		0
+	);
 
 	return (
 		<div className="w-full flex flex-col py-16 gap-3">
@@ -19,9 +28,9 @@ export default function CartLayout() {
 
 					<div className="flex justify-between p-3 border-t-1">
 						<p>Total:</p>
-						<div className="flex w-14 items-center justify-between">
-							<p>3</p>
-							<button>
+						<div className="flex w-16 items-center justify-between">
+							<p>${totalPrice}</p>
+							<button onClick={handleEmptyCart}>
 								<FaTrash width={24} height={24} className="text-red-500" />
 							</button>
 						</div>
@@ -33,7 +42,15 @@ export default function CartLayout() {
 					<p className="font-semibold">Cart Empty</p>
 				</div>
 			)}
-			<button className="flex-1 flex items-center justify-center gap-3 rounded-lg bg-secondary-green hover:bg-secondary-green-dark max-w-sm p-3 py-2 shadow-md text-center transition-colors duration-250 ease-in-out">
+			<button
+				disabled={isCartEmpty}
+				className={`flex-1 flex items-center justify-center gap-3 rounded-lg
+				${
+					isCartEmpty
+						? "bg-gray-300"
+						: "bg-secondary-green hover:bg-secondary-green-dark"
+				}
+				  max-w-sm p-3 py-2 shadow-md text-center transition-colors duration-250 ease-in-out`}>
 				<FaWhatsapp width={20} height={20} color="white" />
 				<p className="font-semibold text-white">Give Order</p>
 			</button>

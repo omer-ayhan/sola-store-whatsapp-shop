@@ -97,6 +97,7 @@ function MyApp({ Component, pageProps }) {
 				pauseOnVisibilityChange
 				closeOnClick
 				pauseOnHover
+				// limit={3}
 			/>
 			<QueryClientProvider client={queryClient}>
 				<StoreProvider>
