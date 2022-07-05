@@ -1,12 +1,12 @@
-import { StoreContext } from "context/StoreProvider";
-import useDetectOutside from "hooks/useDetectOutside";
-import Image from "next/image";
+import React, { memo, useContext, useRef } from "react";
 import Link from "next/link";
-import React, { useContext, useLayoutEffect, useRef, useState } from "react";
 import Drawer from "react-drag-drawer";
 import { FaArrowLeft } from "react-icons/fa";
 
-export default function CustomModal({ show, onClose, children, title }) {
+import { StoreContext } from "context/StoreProvider";
+import useDetectOutside from "hooks/useDetectOutside";
+
+function CustomModal({ show, onClose, children, title }) {
 	const { state } = useContext(StoreContext);
 	const modalRef = useRef();
 
@@ -48,3 +48,5 @@ export default function CustomModal({ show, onClose, children, title }) {
 		</Drawer>
 	);
 }
+
+export default memo(CustomModal);

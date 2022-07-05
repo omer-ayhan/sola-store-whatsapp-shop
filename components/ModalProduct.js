@@ -1,11 +1,11 @@
+import React, { memo, useContext } from "react";
 import Image from "next/image";
-import React, { useContext } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
 import { StoreContext } from "context/StoreProvider";
 import sources from "sources";
 
-export default function ModalProduct({ data, windowProps }) {
+function ModalProduct({ data, windowProps }) {
 	const { cartActions, state } = useContext(StoreContext);
 	const { addToCartAction, incrementQuantity, decrementQuantity } = cartActions;
 
@@ -33,7 +33,7 @@ export default function ModalProduct({ data, windowProps }) {
 	};
 
 	return (
-		<>
+		<div>
 			{data.map((product, i) => {
 				const sizeNum = (product.sizes && product.sizes.split("-").length) || 0;
 				const oldUnitPrice = product.oldPrice / sizeNum;
@@ -124,6 +124,8 @@ export default function ModalProduct({ data, windowProps }) {
 					</div>
 				);
 			})}
-		</>
+		</div>
 	);
 }
+
+export default memo(ModalProduct);
