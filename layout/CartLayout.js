@@ -10,10 +10,9 @@ export default function CartLayout() {
 
 	const handleEmptyCart = () => emptyCart(state.cartItems);
 
-	const totalPrice = state.cartItems.reduce(
-		(acc, item) => acc + item.price * item.quantity,
-		0
-	);
+	const totalPrice =
+		state.cartItems.length > 0 &&
+		state.cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
 	return (
 		<div className="w-full flex flex-col py-16 gap-3">
