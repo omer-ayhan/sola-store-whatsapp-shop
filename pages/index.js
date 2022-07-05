@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import dynamic from "next/dynamic";
@@ -8,6 +8,8 @@ import ProductGrid from "@components/ProductGrid";
 import sources from "sources";
 import useModal from "hooks/useModal";
 import ProductModal from "@components/ProductModal";
+import CartButton from "@components/CartButton";
+import { StoreContext } from "context/StoreProvider";
 const ModalProduct = dynamic(() => import("@components/ModalProduct"));
 const Page = dynamic(() => import("@components/Page"));
 
@@ -17,7 +19,10 @@ export default function Home({
 	brands,
 	brandProducts,
 }) {
-	const { open, closeModal, openModal } = useModal();
+	const { state } = useContext(StoreContext);
+	const { open, closeModal, openModal } = useModal({
+		product: false,
+	});
 	const [modalData, setModalData] = useState(null);
 	const [windowProps, setWindowProps] = useState({
 		width: 0,
@@ -33,7 +38,11 @@ export default function Home({
 
 	return (
 		<Page>
-			<ProductModal show={open} onClose={closeModal} title={modalData?.title}>
+			{state.cartItems.length > 0 && <CartButton />}
+			<ProductModal
+				show={open.product}
+				onClose={closeModal}
+				title={modalData?.title}>
 				{modalData && (
 					<ModalProduct windowProps={windowProps} data={modalData?.data} />
 				)}

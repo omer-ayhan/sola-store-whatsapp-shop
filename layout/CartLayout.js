@@ -8,7 +8,9 @@ import useModal from "hooks/useModal";
 import CartItem from "@components/CartItem";
 
 export default function CartLayout() {
-	const { open, closeModal, openModal } = useModal();
+	const { open, closeModal, openModal } = useModal({
+		payment: false,
+	});
 	const { state, cartActions } = useContext(StoreContext);
 	const { emptyCart } = cartActions;
 	const isCartEmpty = state.cartItems.length === 0;
@@ -24,7 +26,7 @@ export default function CartLayout() {
 	};
 	return (
 		<>
-			<PaymentModal show={open} onClose={closeModal} />
+			<PaymentModal show={open.payment} onClose={closeModal} />
 
 			<div className="w-full flex flex-col py-16 gap-3">
 				<div className="flex-1 rounded-lg bg-white max-w-sm p-3 py-1 shadow-md text-center">
