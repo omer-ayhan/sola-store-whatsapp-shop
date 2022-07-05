@@ -42,7 +42,7 @@ export default function Home({
 				)}
 			</CustomModal>
 			<div className="grid grid-flow-col grid-cols-6 z-40 justify-center">
-				<div className="col-span-6 lg:col-span-4 flex flex-col justify-center px-8 lg:px-24 xl:px-32 py-3 gap-3">
+				<div className="col-span-6 lg:col-span-4 flex flex-col justify-center px-1 sm:px-8 md:px-24 xl:px-32 py-3 gap-3">
 					<div className="grid grid-cols-4 lg:grid-cols-6 bg-white w-full rounded-2xl p-5 md:p-10 py-5">
 						{brands.map((brand, i) => (
 							<div

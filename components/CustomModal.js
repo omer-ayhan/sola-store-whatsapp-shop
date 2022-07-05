@@ -43,7 +43,7 @@ function CustomModal({ show, onClose, children, title }) {
 						</button>
 					</Link>
 				</div>
-				<div className="bg-white w-full">{children}</div>
+				<div className="bg-white w-full max-w-lg">{children}</div>
 			</div>
 		</Drawer>
 	);

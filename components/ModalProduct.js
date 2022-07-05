@@ -90,10 +90,10 @@ function ModalProduct({ data, windowProps }) {
 						</div>
 						<div className="p-2 grid grid-cols-3">
 							<div className="col-span-1">
-								<h1 className="text-xl mb-1 font-semibold">
+								<h1 className="w-full text-base mb-1 font-semibold">
 									{product.productFullName}
 								</h1>
-								<p className="text-xl">Sizes: {product.sizes}</p>
+								<p className="text-lg">Sizes: {product.sizes}</p>
 							</div>
 							<div className="col-span-1 ">
 								{product.oldPrice > 0 && sizeNum ? (
@@ -116,7 +116,7 @@ function ModalProduct({ data, windowProps }) {
 								)}
 							</div>
 							<div className="col-span-1 flex justify-center items-center">
-								<Image src="/images/placeholder.jpg" width={80} height={80} />
+								<Image src="/images/placeholder.jpg" width={70} height={70} />
 							</div>
 						</div>
 					</div>
