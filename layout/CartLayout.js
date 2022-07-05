@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { FaBoxOpen, FaTrash, FaWhatsapp } from "react-icons/fa";
+import { IoMdReturnLeft } from "react-icons/io";
 import dynamic from "next/dynamic";
 
 const PaymentModal = dynamic(() => import("@components/PaymentModal"));
@@ -7,6 +8,7 @@ import { StoreContext } from "context/StoreProvider";
 import useModal from "hooks/useModal";
 import CartItem from "@components/CartItem";
 import WarningModal from "@components/WarningModal";
+import Link from "next/link";
 
 export default function CartLayout() {
 	const { open, closeModal, openModal } = useModal({
@@ -84,6 +86,17 @@ export default function CartLayout() {
 					<FaWhatsapp width={20} height={20} color="white" />
 					<p className="font-semibold text-white">Give Order</p>
 				</button>
+				<Link href="/">
+					<a
+						className={`lg:hidden flex-1 flex items-center justify-center gap-3 rounded-lg bg-secondary-green hover:bg-secondary-green-dark max-w-sm p-3 py-2 shadow-md text-center transition-colors duration-250 ease-in-out`}>
+						<IoMdReturnLeft size={20} color="white" />
+						<p className="font-semibold text-white">
+							{state.cartItems.length > 0
+								? "Continue Shopping"
+								: "Go Back To Homepage"}
+						</p>
+					</a>
+				</Link>
 			</div>
 		</>
 	);
