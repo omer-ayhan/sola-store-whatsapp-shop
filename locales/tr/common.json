@@ -1,0 +1,22 @@
+{
+	"new": "Yeni Ürünler",
+	"sale": "İndirimli Ürünler",
+	"cart": "Sepet",
+	"emptyCart": "Sepetiniz boş",
+	"order": "Sipariş Ver",
+	"payCurrent": "Cari Ödeme",
+	"name": "İsim",
+	"phone": "Telefon Numarası",
+	"total": "Toplam",
+	"addToCart": "Sepete Ekle",
+	"continueShopping": "Alışverişe Devam Et",
+	"backToHome": "Ana Sayfaya Dön",
+	"prompt": {
+		"modalTitle": "Emin misiniz?",
+		"warningTitle": "Sepetinizi boşaltmak istediğinize emin misiniz?",
+		"positiveText": "Evet",
+		"negativeText": "Hayır"
+	},
+	"paySuccess": "Başarıyla ödeme yaptınız",
+	"payFail": "Ödeme başarısız oldu"
+}

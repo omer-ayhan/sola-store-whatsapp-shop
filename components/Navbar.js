@@ -1,11 +1,17 @@
 import Link from "next/link";
 import React, { useContext } from "react";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaTenge } from "react-icons/fa";
 
 import { StoreContext } from "context/StoreProvider";
+import Image from "next/image";
+import { flags } from "lib/constants";
+import useDetectOutside from "hooks/useDetectOutside";
+import Dropdown from "./Dropdown";
 
 export default function Navbar() {
 	const { state } = useContext(StoreContext);
+
+	// useDetectOutside
 
 	return (
 		<div className="flex justify-around w-full h-10 bg-primary-green px-2">
@@ -20,9 +26,7 @@ export default function Navbar() {
 				</Link>
 			</div>
 			<div className="flex">
-				<button className="px-4 text-sm text-white border-x-1 border-x-[#2224261a] border-solid h-full hover:bg-[#ffffff1c] transition-colors duration-300 ease-in-out">
-					EN
-				</button>
+				<Dropdown />
 				<button className="hidden lg:flex items-center justify-center px-4 text-sm text-white border-r-1 border-x-[#2224261a] border-solid h-full hover:bg-[#ffffff1c] transition-colors duration-300 ease-in-out">
 					Cart{" "}
 					<span className="px-2 mx-1 text-xs rounded-md bg-[#07a884]">

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { FaBoxOpen, FaTrash, FaWhatsapp } from "react-icons/fa";
 import { IoMdReturnLeft } from "react-icons/io";
 import dynamic from "next/dynamic";
+import useTranslation from "next-translate/useTranslation";
 
 const PaymentModal = dynamic(() => import("@components/PaymentModal"));
 import { StoreContext } from "context/StoreProvider";
@@ -15,6 +16,7 @@ export default function CartLayout() {
 		payment: false,
 		warning: false,
 	});
+	const { t } = useTranslation("common");
 	const { state, cartActions } = useContext(StoreContext);
 	const { emptyCart } = cartActions;
 	const isCartEmpty = state.cartItems.length === 0;
@@ -39,17 +41,17 @@ export default function CartLayout() {
 			<WarningModal
 				show={open.warning}
 				onClose={() => closeModal("warning")}
-				modalTitle="Are you sure?"
-				warningTitle="Are you sure you want to delete all items in your cart?"
-				positiveText="Yes"
-				negativeText="No"
+				modalTitle={t("prompt.modalTitle")}
+				warningTitle={t("prompt.warningTitle")}
+				positiveText={t("prompt.positiveText")}
+				negativeText={t("prompt.negativeText")}
 				onPositiveClick={handlePositiveClick}
 				onNegativeClick={handleNegativeClick}
 			/>
 
 			<div className="w-full flex flex-col py-16 gap-3">
 				<div className="flex-1 rounded-lg bg-white max-w-sm p-3 py-1 shadow-md text-center">
-					<p className="font-semibold">Cart</p>
+					<p className="font-semibold">{t("cart")}</p>
 				</div>
 				{!!state.cartItems.length ? (
 					<div className="flex-1 rounded-lg max-w-sm bg-white p-2">
@@ -58,7 +60,7 @@ export default function CartLayout() {
 						))}
 
 						<div className="flex justify-between p-3 border-t-1">
-							<p>Total:</p>
+							<p>{t("total")}:</p>
 							<div className="flex w-16 items-center justify-between">
 								<p>${totalPrice}</p>
 								<button onClick={handleEmptyCart}>
@@ -70,7 +72,7 @@ export default function CartLayout() {
 				) : (
 					<div className="flex-1 flex flex-col items-center rounded-lg bg-white max-w-sm p-3 py-2 shadow-md text-center">
 						<FaBoxOpen size={50} className="text-primary-green" />
-						<p className="font-semibold">Cart Empty</p>
+						<p className="font-semibold">{t("emptyCart")}</p>
 					</div>
 				)}
 				<button
@@ -84,7 +86,7 @@ export default function CartLayout() {
 				}
 				  max-w-sm p-3 py-2 shadow-md text-center transition-colors duration-250 ease-in-out`}>
 					<FaWhatsapp width={20} height={20} color="white" />
-					<p className="font-semibold text-white">Give Order</p>
+					<p className="font-semibold text-white capitalize">{t("order")}</p>
 				</button>
 				<Link href="/">
 					<a
@@ -92,8 +94,8 @@ export default function CartLayout() {
 						<IoMdReturnLeft size={20} color="white" />
 						<p className="font-semibold text-white">
 							{state.cartItems.length > 0
-								? "Continue Shopping"
-								: "Go Back To Homepage"}
+								? t("continueShopping")
+								: t("backToHome")}
 						</p>
 					</a>
 				</Link>

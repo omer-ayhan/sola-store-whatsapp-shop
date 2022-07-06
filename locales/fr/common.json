@@ -1,0 +1,22 @@
+{
+	"new": "Nouveaux produits",
+	"sale": "Produits en solde",
+	"cart": "Panier",
+	"emptyCart": "Votre panier est vide",
+	"order": "Donnez votre commande",
+	"payCurrent": "Payer avec un compte courant",
+	"name": "Nom",
+	"phone": "Numéro de téléphone",
+	"total": "Total",
+	"addToCart": "Ajouter au panier",
+	"continueShopping": "Produits en solde0",
+	"backToHome": "Produits en solde1",
+	"prompt": {
+		"modalTitle": "Produits en solde2",
+		"warningTitle": "Produits en solde3",
+		"positiveText": "Produits en solde4",
+		"negativeText": "Produits en solde5"
+	},
+	"paySuccess": "Produits en solde6",
+	"payFail": "Produits en solde7"
+}

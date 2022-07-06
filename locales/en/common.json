@@ -1,0 +1,22 @@
+{
+	"new": "New Products",
+	"sale": "Sale Products",
+	"cart": "Cart",
+	"emptyCart": "Your cart is empty",
+	"order": "Give your order",
+	"payCurrent": "Pay With Current Account",
+	"name": "Name",
+	"phone": "Phone Number",
+	"total": "Total",
+	"addToCart": "Add To Cart",
+	"continueShopping": "Continue Shopping",
+	"backToHome": "Go Back To Homepage",
+	"prompt": {
+		"modalTitle": "Are you sure?",
+		"warningTitle": "Are you sure you want to delete all items in your cart?",
+		"positiveText": "Yes",
+		"negativeText": "No"
+	},
+	"paySuccess": "Successfully Paid",
+	"payFail": "Failed to Pay"
+}

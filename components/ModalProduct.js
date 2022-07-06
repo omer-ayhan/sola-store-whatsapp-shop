@@ -4,8 +4,10 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 
 import { StoreContext } from "context/StoreProvider";
 import sources from "sources";
+import useTranslation from "next-translate/useTranslation";
 
 function ModalProduct({ data, windowProps }) {
+	const { t } = useTranslation("common");
 	const { cartActions, state } = useContext(StoreContext);
 	const { addToCartAction, incrementQuantity, decrementQuantity } = cartActions;
 
@@ -83,7 +85,7 @@ function ModalProduct({ data, windowProps }) {
 											)
 										}
 										className="bg-primary-green p-3 py-2 rounded-md text-sm text-white font-semibold">
-										Add To Cart
+										{t("addToCart")}
 									</button>
 								)}
 							</div>

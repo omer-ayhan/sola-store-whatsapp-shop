@@ -7,6 +7,7 @@ import {
 	FaTimesCircle,
 } from "react-icons/fa";
 import { Formik } from "formik";
+import useTranslation from "next-translate/useTranslation";
 
 import { Input } from "./Input";
 import { StoreContext } from "context/StoreProvider";
@@ -20,6 +21,7 @@ import sources from "sources";
 import Spinner from "./Spinner";
 
 function PaymentModal({ show, onClose }) {
+	const { t } = useTranslation("common");
 	const { state, cartActions, dispatch } = useContext(StoreContext);
 	const { cartRefetch } = cartActions;
 	const [currentSeller, setCurrentSeller] = useState(null);
@@ -44,7 +46,7 @@ function PaymentModal({ show, onClose }) {
 					<div className="grid place-items-center gap-2">
 						<FaCheckCircle size={80} className="text-primary-green" />
 						<p className="text-3xl font-semibold text-primary-green capitalize">
-							Successfully Paid
+							{t("paySuccess")}
 						</p>
 					</div>
 				);
@@ -53,7 +55,7 @@ function PaymentModal({ show, onClose }) {
 					<div className="grid place-items-center gap-2">
 						<FaTimesCircle size={80} className="text-red-600" />
 						<p className="text-3xl font-semibold text-red-600 capitalize">
-							Failed to Pay
+							{t("payFail")}
 						</p>
 					</div>
 				);
@@ -104,7 +106,7 @@ function PaymentModal({ show, onClose }) {
 										id="name"
 										name="name"
 										type="text"
-										label="Name"
+										label={t("name")}
 										required
 										values={values.name}
 										touched={touched.name}
@@ -116,7 +118,7 @@ function PaymentModal({ show, onClose }) {
 										id="tel"
 										name="tel"
 										type="tel"
-										label="Phone Number"
+										label={t("phone")}
 										required
 										values={values.tel}
 										touched={touched.tel}
@@ -132,7 +134,7 @@ function PaymentModal({ show, onClose }) {
 											<Spinner />
 										) : (
 											<>
-												<FaRegCreditCard size={25} /> Pay with current account
+												<FaRegCreditCard size={25} /> {t("payCurrent")}
 											</>
 										)}
 									</button>
@@ -196,9 +198,7 @@ function PaymentModal({ show, onClose }) {
 							className="p-3 py-2 border-2 border-[#80c0b4] rounded-md hover:border-white transition-colors duration-250 ease-in-out">
 							<FaArrowLeft width={25} height={25} color="white" />
 						</button>
-						<p className="text-lg text-white capitalize">
-							Pay with current account
-						</p>
+						<p className="text-lg text-white capitalize">{t("payCurrent")}</p>
 					</div>
 				</div>
 				<div className="bg-white w-full p-6 py-8">{handlePaymentStatus()}</div>

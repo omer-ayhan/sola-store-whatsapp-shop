@@ -5,8 +5,10 @@ import { FaArrowLeft } from "react-icons/fa";
 
 import { StoreContext } from "context/StoreProvider";
 import useDetectOutside from "hooks/useDetectOutside";
+import useTranslation from "next-translate/useTranslation";
 
 function ProductModal({ show, onClose, children, title }) {
+	const { t } = useTranslation("common");
 	const { state } = useContext(StoreContext);
 	const modalRef = useRef();
 
@@ -27,7 +29,7 @@ function ProductModal({ show, onClose, children, title }) {
 					<button
 						onClick={onClose}
 						className="hidden lg:block p-3 py-1 border-2 text-white border-[#80c0b4] rounded-md hover:border-white transition-colors duration-250 ease-in-out">
-						Cart{" "}
+						{t("cart")}{" "}
 						<span className="px-2 mx-1 text-xs rounded-md bg-[#07a884]">
 							{state.cartsNum}
 						</span>
@@ -36,7 +38,7 @@ function ProductModal({ show, onClose, children, title }) {
 						<button
 							onClick={onClose}
 							className="lg:hidden p-3 py-1 border-2 text-white border-[#80c0b4] rounded-md hover:border-white transition-colors duration-250 ease-in-out">
-							Cart{" "}
+							{t("cart")}{" "}
 							<span className="px-2 mx-1 text-xs rounded-md bg-[#07a884]">
 								{state.cartsNum}
 							</span>
