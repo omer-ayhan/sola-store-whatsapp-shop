@@ -18,6 +18,6 @@
 		"positiveText": "Yes",
 		"negativeText": "No"
 	},
-	"paySuccess": "Successfully Paid",
+	"paySuccess": "Your order has been received, our customer representatives will contact you.",
 	"payFail": "Failed to Pay"
 }

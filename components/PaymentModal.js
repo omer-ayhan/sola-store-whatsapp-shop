@@ -45,7 +45,7 @@ function PaymentModal({ show, onClose }) {
 				return (
 					<div className="grid place-items-center gap-2">
 						<FaCheckCircle size={80} className="text-primary-green" />
-						<p className="text-3xl font-semibold text-primary-green capitalize">
+						<p className="text-3xl font-semibold text-primary-green capitalize text-center">
 							{t("paySuccess")}
 						</p>
 					</div>
@@ -54,7 +54,7 @@ function PaymentModal({ show, onClose }) {
 				return (
 					<div className="grid place-items-center gap-2">
 						<FaTimesCircle size={80} className="text-red-600" />
-						<p className="text-3xl font-semibold text-red-600 capitalize">
+						<p className="text-3xl font-semibold text-red-600 capitalize text-center">
 							{t("payFail")}
 						</p>
 					</div>

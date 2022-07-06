@@ -18,6 +18,6 @@
 		"positiveText": "Produits en solde4",
 		"negativeText": "Produits en solde5"
 	},
-	"paySuccess": "Produits en solde6",
+	"paySuccess": "Votre commande a été reçue, nos représentants clients vous contacteront.",
 	"payFail": "Produits en solde7"
 }

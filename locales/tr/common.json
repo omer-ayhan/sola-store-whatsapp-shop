@@ -18,6 +18,6 @@
 		"positiveText": "Evet",
 		"negativeText": "Hayır"
 	},
-	"paySuccess": "Başarıyla ödeme yaptınız",
+	"paySuccess": "Siparişiniz alındı, müşteri temsilcilerimiz sizinle iletişime geçecektir",
 	"payFail": "Ödeme başarısız oldu"
 }
