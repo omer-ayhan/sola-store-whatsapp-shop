@@ -95,7 +95,9 @@ function ModalProduct({ data, windowProps }) {
 								<h1 className="w-full text-base mb-1 font-semibold">
 									{product.productFullName}
 								</h1>
-								<p className="text-lg">Sizes: {product.sizes}</p>
+								<p className="text-lg">
+									{t("sizes")}: {product.sizes}
+								</p>
 							</div>
 							<div className="col-span-1 ">
 								{product.oldPrice > 0 && sizeNum ? (

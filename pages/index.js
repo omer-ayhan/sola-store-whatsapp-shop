@@ -10,6 +10,7 @@ import useModal from "hooks/useModal";
 import ProductModal from "@components/ProductModal";
 import CartButton from "@components/CartButton";
 import { StoreContext } from "context/StoreProvider";
+import useTranslation from "next-translate/useTranslation";
 const ModalProduct = dynamic(() => import("@components/ModalProduct"));
 const Page = dynamic(() => import("@components/Page"));
 
@@ -19,6 +20,7 @@ export default function Home({
 	brands,
 	brandProducts,
 }) {
+	const { t } = useTranslation("common");
 	const { state } = useContext(StoreContext);
 	const { open, closeModal, openModal } = useModal({
 		product: false,
@@ -77,25 +79,25 @@ export default function Home({
 						<ProductGrid
 							onClick={() => {
 								setModalData({
-									title: "New Products",
+									title: t("new"),
 									data: newProducts,
 								});
 								openModal();
 							}}
 							data={newProducts}
-							title="New Products"
+							title={t("new")}
 							size={newProducts.length}
 						/>
 						<ProductGrid
 							onClick={() => {
 								setModalData({
-									title: "Sale Products",
+									title: t("sale"),
 									data: saleProducts,
 								});
 								openModal();
 							}}
 							data={saleProducts}
-							title="Sale Products"
+							title={t("sale")}
 							size={saleProducts.length}
 						/>
 						{/* {brandProducts.map((brandProduct, i) => (
