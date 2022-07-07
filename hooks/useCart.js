@@ -6,6 +6,7 @@ import { SET_CART_DATA } from "context/types";
 import { StoreContext } from "context/StoreProvider";
 import useQueryMutation from "./useQueryMutation";
 import { notify } from "@components/Toast";
+import useTranslation from "next-translate/useTranslation";
 
 const fetchCart = async ({ userId }) => {
 	const { data: cartData } = await axios.get(`/api/cart/getCartData`, {
@@ -17,6 +18,7 @@ const fetchCart = async ({ userId }) => {
 };
 
 export default function useCart(dispatch, uid) {
+	const { t } = useTranslation("common");
 	const { isLoading: isCartLoading, refetch: cartRefetch } = useQuery(
 		`cartData-${uid}`,
 		() =>
@@ -44,14 +46,19 @@ export default function useCart(dispatch, uid) {
 			{
 				onSuccess: () => {
 					cartRefetch();
-					notify("success", `${productName} added to cart`);
+					notify(
+						"success",
+						t("notifications.addedToCart", {
+							product: productName,
+						})
+					);
 				},
 			}
 		);
 	};
 
 	const removeFromCart = (creds) => {
-		const { userId, productId } = creds;
+		const { userId, productId, productName } = creds;
 		mutate(
 			{
 				url: `/api/cart/removeFromCart?VisitorID=${userId}&ProductID=${productId}`,
@@ -59,7 +66,12 @@ export default function useCart(dispatch, uid) {
 			{
 				onSuccess: () => {
 					cartRefetch();
-					notify("success", "Product removed from cart");
+					notify(
+						"success",
+						t("notifications.removedCart", {
+							product: productName,
+						})
+					);
 				},
 			}
 		);
@@ -74,7 +86,7 @@ export default function useCart(dispatch, uid) {
 			{
 				onSuccess: () => {
 					cartRefetch();
-					notify("success", "Increased Quantity");
+					notify("success", t("notifications.increasedCart"));
 				},
 			}
 		);
@@ -89,10 +101,10 @@ export default function useCart(dispatch, uid) {
 			{
 				onSuccess: ({ data }) => {
 					cartRefetch();
-					notify("error", "Decreased Quantity");
+					notify("error", t("notifications.decreasedCart"));
 				},
 				onError: () => {
-					notify("error", "Error Decreasing Quantity");
+					notify("error", t("notifications.error"));
 				},
 			}
 		);
@@ -109,7 +121,7 @@ export default function useCart(dispatch, uid) {
 				type: SET_CART_DATA,
 				payload: [],
 			});
-			notify("success", "Cart emptied");
+			notify("success", t("notifications.emptiedCart"));
 		} catch (error) {
 			notify("error", error);
 		}

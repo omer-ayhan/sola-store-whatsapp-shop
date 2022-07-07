@@ -19,5 +19,15 @@
 		"negativeText": "No"
 	},
 	"paySuccess": "Your order has been received, our customer representatives will contact you.",
-	"payFail": "Failed to Pay"
+	"payFail": "Failed to Pay",
+	"notifications": {
+		"error": "Something went wrong",
+		"addedToCart": "{{product}} added to cart",
+		"removedCart": "{{product}} removed from cart",
+		"increasedCart": "Increased Quantity",
+		"decreasedCart": "Decreased Quantity",
+		"emptiedCart": "Basket has been emptied",
+		"emptyCart": "Your cart is empty",
+		"selectSeller": "Please select a seller"
+	}
 }

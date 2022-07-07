@@ -150,11 +150,11 @@ function PaymentModal({ show, onClose }) {
 		const { name, tel } = values;
 		if (state.cartItems.length === 0) {
 			onClose();
-			notify("error", "Cart is empty");
+			notify("error", t("notifications.emptyCart"));
 			return;
 		}
 		if (!currentSeller?.id) {
-			notify("error", "Please select a seller");
+			notify("error", t("notifications.selectSeller"));
 			return;
 		}
 		setIsLoading(true);

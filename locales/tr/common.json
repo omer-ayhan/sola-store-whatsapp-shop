@@ -19,5 +19,15 @@
 		"negativeText": "Hayır"
 	},
 	"paySuccess": "Siparişiniz alındı, müşteri temsilcilerimiz sizinle iletişime geçecektir",
-	"payFail": "Ödeme başarısız oldu"
+	"payFail": "Ödeme başarısız oldu",
+	"notifications": {
+		"error": "Bir hata oluştu",
+		"addedToCart": "{{product}} sepetinize eklendi",
+		"removedCart": "{{product}} sepetinizden silindi",
+		"increasedCart": "Adet artırıldı",
+		"decreasedCart": "Adet azaltıldı",
+		"emptiedCart": "Sepetiniz boşaltıldı",
+		"emptyCart": "Sepetiniz boş",
+		"selectSeller": "Lütfen bir satıcı seçiniz"
+	}
 }

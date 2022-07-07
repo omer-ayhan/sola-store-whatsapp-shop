@@ -36,7 +36,10 @@ export default function Dropdown() {
 					open.dropdown ? "block" : "hidden"
 				} bg-white absolute -bottom-15 left-0 w-28 rounded-b-md shadow-md flex flex-col justify-start z-50`}>
 				{flags.map((flag, i) => (
-					<Link href={router.asPath} locale={flag.lang}>
+					<Link
+						href={router.asPath}
+						locale={flag.lang}
+						key={`${flag.lang}.!!_${i}`}>
 						<a
 							key={`${i}.._!${i}`}
 							onClick={closeModal}

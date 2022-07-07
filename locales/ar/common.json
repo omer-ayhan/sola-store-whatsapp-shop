@@ -19,5 +19,15 @@
 		"negativeText": "بيع المنتجات5"
 	},
 	"paySuccess": "تم استلام طلبك ، وسيتصل بك مندوبو عملائنا.",
-	"payFail": "بيع المنتجات7"
+	"payFail": "بيع المنتجات7",
+	"notifications": {
+		"error": "هناك خطأ ما",
+		"addedToCart": "تمت إضافة {{product}} إلى سلة التسوق",
+		"removedCart": "تمت إزالة {{product}} من سلة التسوق",
+		"increasedCart": "زيادة الكمية",
+		"decreasedCart": "انخفاض الكمية",
+		"emptiedCart": "تم إفراغ السلة",
+		"emptyCart": "سلة التسوق الخاصة بك فارغة",
+		"selectSeller": "يرجى اختيار البائع"
+	}
 }

@@ -19,5 +19,15 @@
 		"negativeText": "Produits en solde5"
 	},
 	"paySuccess": "Votre commande a été reçue, nos représentants clients vous contacteront.",
-	"payFail": "Échec du paiement"
+	"payFail": "Échec du paiement",
+	"notifications": {
+		"error": "Quelque chose s'est mal passé",
+		"addedToCart": "{{product}} ajouté au panier",
+		"removedCart": "{{produit}} supprimé du panier",
+		"increasedCart": "Augmentation de la quantité",
+		"decreasedCart": "Diminution de la quantité",
+		"emptiedCart": "Le panier a été vidé",
+		"emptyCart": "Votre panier est vide",
+		"selectSeller": "Veuillez sélectionner un vendeur"
+	}
 }
