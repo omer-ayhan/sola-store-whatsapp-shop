@@ -1,16 +1,36 @@
+import { useEffect } from "react";
 import Head from "next/head";
 import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { useRouter } from "next/router";
+import Script from "next/script";
 
 import Layout from "layout/Layout";
 import StoreProvider from "context/StoreProvider";
+import { ANALYTICS_ID } from "lib/constants";
 import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
-import { useEffect } from "react";
 
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
+	const router = useRouter();
+
+	const handleRouteChange = (url) => {
+		if (typeof window !== "undefined") {
+			//   ym("hit", url);
+			window.gtag("config", ANALYTICS_ID, {
+				page_path: url,
+			});
+		}
+	};
+	useEffect(() => {
+		router.events.on("routeChangeComplete", handleRouteChange);
+
+		return () => {
+			router.events.off("routeChangeComplete", handleRouteChange);
+		};
+	}, [router.events]);
 	return (
 		<>
 			<Head>
@@ -98,7 +118,6 @@ function MyApp({ Component, pageProps }) {
 				pauseOnVisibilityChange
 				closeOnClick
 				pauseOnHover
-				// limit={3}
 			/>
 			<QueryClientProvider client={queryClient}>
 				<StoreProvider>
@@ -107,6 +126,18 @@ function MyApp({ Component, pageProps }) {
 					</Layout>
 				</StoreProvider>
 			</QueryClientProvider>
+			<Script
+				src={`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_ID}`}
+			/>
+			<Script>
+				{`
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+
+ gtag('config', '${ANALYTICS_ID}'); 
+  `}
+			</Script>
 		</>
 	);
 }
