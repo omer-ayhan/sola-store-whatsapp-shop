@@ -1,6 +1,7 @@
 import React, { memo, useContext } from "react";
 import Image from "next/image";
 import { FaMinus, FaPlus } from "react-icons/fa";
+import { FixedSizeList } from "react-window";
 
 import { StoreContext } from "context/StoreProvider";
 import sources from "sources";
@@ -35,8 +36,13 @@ function ModalProduct({ data, windowProps }) {
 	};
 
 	return (
-		<div>
-			{data.map((product, i) => {
+		<FixedSizeList
+			height={windowProps.height}
+			width={windowProps.width}
+			itemCount={data.length}
+			itemSize={windowProps.height + 20}>
+			{({ index: i, style }) => {
+				const product = data[i];
 				const sizeNum = (product.sizes && product.sizes.split("-").length) || 0;
 				const oldUnitPrice = product.oldPrice / sizeNum;
 				// const originalDiscount = oldUnitPrice - product.singlePrice;
@@ -47,10 +53,13 @@ function ModalProduct({ data, windowProps }) {
 					);
 
 				return (
-					<div key={`${i}..${i}`} className="flex flex-col justify-start">
+					<div
+						key={`${i}..${i}`}
+						style={style}
+						className="flex flex-col justify-start">
 						<div
 							style={{
-								height: `${windowProps.height - 130}px`,
+								height: `${windowProps.height}px`,
 							}}
 							className="relative w-full">
 							<Image
@@ -126,8 +135,8 @@ function ModalProduct({ data, windowProps }) {
 						</div>
 					</div>
 				);
-			})}
-		</div>
+			}}
+		</FixedSizeList>
 	);
 }
 
