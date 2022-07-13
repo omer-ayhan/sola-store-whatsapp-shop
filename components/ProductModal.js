@@ -1,21 +1,17 @@
-import React, { memo, useContext, useRef } from "react";
+import React, { memo, useContext } from "react";
 import Link from "next/link";
 import Drawer from "react-drag-drawer";
 import { FaArrowLeft } from "react-icons/fa";
 
 import { StoreContext } from "context/StoreProvider";
-import useDetectOutside from "hooks/useDetectOutside";
 import useTranslation from "next-translate/useTranslation";
 
 function ProductModal({ show, onClose, children, title }) {
 	const { t } = useTranslation("common");
 	const { state } = useContext(StoreContext);
-	const modalRef = useRef();
-
-	useDetectOutside(modalRef, onClose);
 
 	return (
-		<div ref={modalRef}>
+		<>
 			{show && (
 				<div className="fixed top-0 left-0 w-full flex justify-between items-center bg-primary-green py-2 px-4 z-20">
 					<div className="flex items-center gap-3">
@@ -53,7 +49,7 @@ function ProductModal({ show, onClose, children, title }) {
 					</div>
 				</Drawer>
 			</div>
-		</div>
+		</>
 	);
 }
 

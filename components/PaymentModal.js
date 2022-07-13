@@ -63,8 +63,12 @@ function PaymentModal({ show, onClose }) {
 				return (
 					<>
 						<div className="grid grid-cols-3 lg:grid-cols-4 gap-4 justify-center items-center mb-4">
+							<h1 className="text-2xl col-span-3 text-center">
+								Müşteri Temsilcinizi Seçiniz
+							</h1>
 							{state.salesTeamData.map((team, index) => (
 								<button
+									key={`${index}._?*${index}`}
 									className={
 										team.id === currentSeller?.id
 											? "border-2 border-solid border-red-600"
@@ -189,9 +193,9 @@ function PaymentModal({ show, onClose }) {
 	};
 
 	return (
-		<Drawer open={show}>
-			<div ref={modalRef} className="grid grid-cols-1 bg-white z-50">
-				<div className="flex justify-between items-center h-16 bg-primary-green w-full py-2 px-4">
+		<>
+			{show && (
+				<div className="fixed top-0 left-0 flex justify-between items-center h-16 bg-primary-green w-full py-2 px-4 z-20">
 					<div className="flex items-center gap-3">
 						<button
 							onClick={onModalClose}
@@ -201,9 +205,15 @@ function PaymentModal({ show, onClose }) {
 						<p className="text-lg text-white capitalize">{t("payCurrent")}</p>
 					</div>
 				</div>
-				<div className="bg-white w-full p-6 py-8">{handlePaymentStatus()}</div>
-			</div>
-		</Drawer>
+			)}
+			<Drawer open={show}>
+				<div ref={modalRef} className="grid grid-cols-1 bg-white z-50">
+					<div className="bg-white w-full p-6 pt-72">
+						{handlePaymentStatus()}
+					</div>
+				</div>
+			</Drawer>
+		</>
 	);
 }
 
