@@ -45,6 +45,7 @@ function ModalProduct({ data, windowProps }) {
 					state.cartItems.find(
 						(cart) => cart.productID === Number(product.masterProductID)
 					);
+
 				return (
 					<div key={`${i}..${i}`} className="flex flex-col justify-start">
 						<div

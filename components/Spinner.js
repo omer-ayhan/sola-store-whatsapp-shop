@@ -1,8 +1,15 @@
-export default function Spinner() {
+export default function Spinner({ size = "small" }) {
+	const allSizes = {
+		small: 8,
+		medium: 16,
+		large: 32,
+		xlarge: 64,
+	};
+
 	return (
 		<svg
 			role="status"
-			class="h-8 w-8 animate-spin mr-2 text-gray-200 dark:text-transparent fill-white"
+			class={`h-${allSizes[size]} w-${allSizes[size]} animate-spin mr-2 text-gray-200 dark:text-transparent fill-white`}
 			viewBox="0 0 100 101"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg">

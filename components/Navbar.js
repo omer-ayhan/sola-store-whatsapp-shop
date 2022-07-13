@@ -5,17 +5,25 @@ import { FaSearch } from "react-icons/fa";
 import { StoreContext } from "context/StoreProvider";
 import Dropdown from "./Dropdown";
 import useTranslation from "next-translate/useTranslation";
+import useModal from "hooks/useModal";
+import SearchModal from "./SearchModal";
 
 export default function Navbar() {
 	const { t } = useTranslation("common");
+	const { open, openModal, closeModal } = useModal({
+		search: false,
+	});
 	const { state } = useContext(StoreContext);
 
 	return (
 		<div className="flex justify-around w-full h-10 bg-primary-green px-2">
+			<SearchModal show={open.search} onClose={closeModal} />
 			<div className="flex items-center">
-				{/* <button className="h-full px-4 col-span-1 border-x-1 border-x-[#2224261a] border-solid hover:bg-[#ffffff1c] transition-colors duration-300 ease-in-out">
+				<button
+					onClick={openModal}
+					className="h-full px-4 col-span-1 border-x-1 border-x-[#2224261a] border-solid hover:bg-[#ffffff1c] transition-colors duration-300 ease-in-out">
 					<FaSearch color="#fff" width={18} height={18} />
-				</button> */}
+				</button>
 				<Link href="/">
 					<button className="px-4 text-sm text-white border-r-1 border-x-[#2224261a] border-solid h-full hover:bg-[#ffffff1c] transition-colors duration-300 ease-in-out">
 						Sola Store
