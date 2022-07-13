@@ -15,9 +15,9 @@ function ProductModal({ show, onClose, children, title }) {
 	useDetectOutside(modalRef, onClose);
 
 	return (
-		<Drawer open={show}>
-			<div ref={modalRef} className="grid grid-cols-1 bg-white z-50 h-screen">
-				<div className="flex justify-between items-center bg-primary-green w-full py-2 px-4">
+		<>
+			{show && (
+				<div className="fixed top-0 left-0 w-full flex justify-between items-center bg-primary-green py-2 px-4 z-20">
 					<div className="flex items-center gap-3">
 						<button
 							onClick={onClose}
@@ -45,9 +45,17 @@ function ProductModal({ show, onClose, children, title }) {
 						</button>
 					</Link>
 				</div>
-				<div className="bg-white w-full max-w-lg">{children}</div>
+			)}
+			<div className="z-10">
+				<Drawer open={show}>
+					<div
+						ref={modalRef}
+						className="relative grid grid-cols-1 bg-white z-50 h-screen">
+						<div className="bg-white w-full max-w-lg">{children}</div>
+					</div>
+				</Drawer>
 			</div>
-		</Drawer>
+		</>
 	);
 }
 
