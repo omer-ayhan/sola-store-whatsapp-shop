@@ -10,9 +10,6 @@ import useTranslation from "next-translate/useTranslation";
 function ProductModal({ show, onClose, children, title }) {
 	const { t } = useTranslation("common");
 	const { state } = useContext(StoreContext);
-	const modalRef = useRef();
-
-	useDetectOutside(modalRef, onClose);
 
 	return (
 		<>
@@ -47,10 +44,8 @@ function ProductModal({ show, onClose, children, title }) {
 				</div>
 			)}
 			<div className="z-10">
-				<Drawer open={show}>
-					<div
-						ref={modalRef}
-						className="relative grid grid-cols-1 bg-white z-50 h-screen">
+				<Drawer open={show} onRequestClose={onClose}>
+					<div className="relative grid grid-cols-1 bg-white z-50 h-screen">
 						<div className="bg-white w-full max-w-lg">{children}</div>
 					</div>
 				</Drawer>
