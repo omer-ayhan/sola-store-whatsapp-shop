@@ -13,10 +13,10 @@
 	"continueShopping": "بيع المنتجات0",
 	"backToHome": "بيع المنتجات1",
 	"prompt": {
-		"modalTitle": "بيع المنتجات2",
-		"warningTitle": "بيع المنتجات3",
-		"positiveText": "بيع المنتجات4",
-		"negativeText": "بيع المنتجات5"
+		"modalTitle": "بيع المنتجات",
+		"warningTitle": "بيع المنتجات",
+		"positiveText": "بيع المنتجات",
+		"negativeText": "بيع المنتجات"
 	},
 	"paySuccess": "تم استلام طلبك ، وسيتصل بك مندوبو عملائنا.",
 	"payFail": "بيع المنتجات7",

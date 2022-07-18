@@ -10,20 +10,20 @@
 	"phone": "Numéro de téléphone",
 	"total": "Total",
 	"addToCart": "Ajouter au panier",
-	"continueShopping": "Produits en solde0",
-	"backToHome": "Produits en solde1",
+	"continueShopping": "Produits en solde",
+	"backToHome": "Produits en solde",
 	"prompt": {
-		"modalTitle": "Produits en solde2",
-		"warningTitle": "Produits en solde3",
-		"positiveText": "Produits en solde4",
-		"negativeText": "Produits en solde5"
+		"modalTitle": "Produits en solde",
+		"warningTitle": "Produits en solde",
+		"positiveText": "Produits en solde",
+		"negativeText": "Produits en solde"
 	},
 	"paySuccess": "Votre commande a été reçue, nos représentants clients vous contacteront.",
 	"payFail": "Échec du paiement",
 	"notifications": {
 		"error": "Quelque chose s'est mal passé",
 		"addedToCart": "{{product}} ajouté au panier",
-		"removedCart": "{{produit}} supprimé du panier",
+		"removedCart": "{{product}} supprimé du panier",
 		"increasedCart": "Augmentation de la quantité",
 		"decreasedCart": "Diminution de la quantité",
 		"emptiedCart": "Le panier a été vidé",

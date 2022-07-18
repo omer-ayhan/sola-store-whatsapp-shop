@@ -11,19 +11,19 @@
 	"total": "Всего",
 	"addToCart": "Добавить в корзину",
 	"continueShopping": "Продукты со скидкой0",
-	"backToHome": "Продукты со скидкой1",
+	"backToHome": "Продукты со скидкой",
 	"prompt": {
-		"modalTitle": "Продукты со скидкой2",
-		"warningTitle": "Продукты со скидкой3",
-		"positiveText": "Продукты со скидкой4",
-		"negativeText": "Продукты со скидкой5"
+		"modalTitle": "Продукты со скидкой",
+		"warningTitle": "Продукты со скидкой",
+		"positiveText": "Продукты со скидкой",
+		"negativeText": "Продукты со скидкой"
 	},
 	"paySuccess": "Ваш заказ принят, наши представители свяжутся с вами.",
 	"payFail": "Продукты со скидкой",
 	"notifications": {
 		"error": "Что-то пошло не так",
 		"addedToCart": "{{product}} добавлен в корзину",
-		"removedCart": "{{продукт}} удален из корзины",
+		"removedCart": "{{product}} удален из корзины",
 		"increasedCart": "Увеличенное количество",
 		"decreasedCart": "Уменьшенное количество",
 		"emptiedCart": "Корзина опорожнена",
