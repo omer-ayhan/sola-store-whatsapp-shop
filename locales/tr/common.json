@@ -12,6 +12,8 @@
 	"continueShopping": "Alışverişe Devam Et",
 	"backToHome": "Ana Sayfaya Dön",
 	"sizes": "Bedenler",
+	"searchPlaceholder": "Ürün ara",
+	"close": "Kapat",
 	"prompt": {
 		"modalTitle": "Emin misiniz?",
 		"warningTitle": "Sepetinizi boşaltmak istediğinize emin misiniz?",
@@ -28,6 +30,7 @@
 		"decreasedCart": "Adet azaltıldı",
 		"emptiedCart": "Sepetiniz boşaltıldı",
 		"emptyCart": "Sepetiniz boş",
-		"selectSeller": "Lütfen bir satıcı seçiniz"
+		"selectSeller": "Lütfen bir satıcı seçiniz",
+		"searchEmpty": "Lütfen bir ürün giriniz"
 	}
 }

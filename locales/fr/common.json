@@ -12,6 +12,8 @@
 	"addToCart": "Ajouter au panier",
 	"continueShopping": "Produits en solde",
 	"backToHome": "Produits en solde",
+	"searchPlaceholder": "Recherche de produits",
+	"close": "proche",
 	"prompt": {
 		"modalTitle": "Produits en solde",
 		"warningTitle": "Produits en solde",
@@ -28,6 +30,7 @@
 		"decreasedCart": "Diminution de la quantité",
 		"emptiedCart": "Le panier a été vidé",
 		"emptyCart": "Votre panier est vide",
-		"selectSeller": "Veuillez sélectionner un vendeur"
+		"selectSeller": "Veuillez sélectionner un vendeur",
+		"searchEmpty": "Veuillez entrer un produit"
 	}
 }

@@ -1,10 +1,8 @@
-import React, { memo, useContext, useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import React, { memo, useEffect, useRef, useState } from "react";
 import Drawer from "react-drag-drawer";
 import { FaArrowLeft, FaSearch } from "react-icons/fa";
 import Router from "next/router";
 
-import { StoreContext } from "context/StoreProvider";
 import useTranslation from "next-translate/useTranslation";
 import { notify } from "./Toast";
 import axios from "axios";
@@ -13,7 +11,6 @@ import Spinner from "./Spinner";
 
 function SearchModal({ show, onClose }) {
 	const { t } = useTranslation("common");
-	const { state } = useContext(StoreContext);
 	const inputRef = useRef(null);
 	const [loading, setLoading] = useState(false);
 	const [search, setSearch] = useState([]);
@@ -64,7 +61,7 @@ function SearchModal({ show, onClose }) {
 							<input
 								ref={inputRef}
 								type="text"
-								placeholder="Search Products"
+								placeholder={t("searchPlaceholder")}
 								className="w-full h-10 px-3 rounded-md outline-none"
 							/>
 							<button
@@ -77,7 +74,7 @@ function SearchModal({ show, onClose }) {
 				</div>
 			)}
 			<div className="z-10">
-				<Drawer open={show} onRequestClose={onClose}>
+				<Drawer open={show}>
 					{loading ? (
 						<Spinner />
 					) : !!search.length ? (
@@ -90,13 +87,13 @@ function SearchModal({ show, onClose }) {
 						<div className="pt-14 relative flex flex-col items-center bg-white z-50 w-screen h-screen">
 							<div className="bg-white w-full">
 								<h1 className="text-2xl font-medium text-center py-3 border-b-1 border-solid border-gray-300">
-									Please enter a product
+									{t("notifications.searchEmpty")}
 								</h1>
 							</div>
 							<button
 								onClick={onClose}
 								className="py-2 px-16 text-sm text-gray-500 rounded-sm m-2 border-1 border-1 hover:border-gray-600 hover:text-gray-600 transition-colors duration-200 ease-in-out">
-								Close
+								{t("close")}
 							</button>
 						</div>
 					)}

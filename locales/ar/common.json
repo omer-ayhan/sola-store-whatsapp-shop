@@ -12,6 +12,8 @@
 	"addToCart": "إضافة إلى عربة التسوق",
 	"continueShopping": "بيع المنتجات0",
 	"backToHome": "بيع المنتجات1",
+	"searchPlaceholder": "البحث عن المنتجات",
+	"close": "قريب",
 	"prompt": {
 		"modalTitle": "بيع المنتجات",
 		"warningTitle": "بيع المنتجات",
@@ -28,6 +30,7 @@
 		"decreasedCart": "انخفاض الكمية",
 		"emptiedCart": "تم إفراغ السلة",
 		"emptyCart": "سلة التسوق الخاصة بك فارغة",
-		"selectSeller": "يرجى اختيار البائع"
+		"selectSeller": "يرجى اختيار البائع",
+		"searchEmpty": "الرجاء إدخال منتج"
 	}
 }

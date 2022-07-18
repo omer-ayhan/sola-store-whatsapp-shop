@@ -12,6 +12,8 @@
 	"addToCart": "Add To Cart",
 	"continueShopping": "Continue Shopping",
 	"backToHome": "Go Back To Homepage",
+	"searchPlaceholder": "Search Products",
+	"close": "Close",
 	"prompt": {
 		"modalTitle": "Are you sure?",
 		"warningTitle": "Are you sure you want to delete all items in your cart?",
@@ -28,6 +30,7 @@
 		"decreasedCart": "Decreased Quantity",
 		"emptiedCart": "Basket has been emptied",
 		"emptyCart": "Your cart is empty",
-		"selectSeller": "Please select a seller"
+		"selectSeller": "Please select a seller",
+		"searchEmpty": "Please enter a product"
 	}
 }
