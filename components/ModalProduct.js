@@ -4,8 +4,8 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import { FixedSizeList } from "react-window";
 
 import { StoreContext } from "context/StoreProvider";
-import sources from "sources";
 import useTranslation from "next-translate/useTranslation";
+import CustomCarousel from "./Carousel";
 
 function ModalProduct({ data, windowProps }) {
 	const { t } = useTranslation("common");
@@ -62,13 +62,14 @@ function ModalProduct({ data, windowProps }) {
 								height: `${windowProps.height}px`,
 							}}
 							className="relative w-full">
-							<Image
+							{/* <Image
 								src={`${sources.imageMaxSrc}${product.picture_1}`}
 								layout="fill"
 								objectFit="cover"
 								placeholder="blur"
 								blurDataURL="/images/placeholder.jpg"
-							/>
+							/> */}
+							<CustomCarousel product={product} />
 							<div className="absolute bottom-4 left-1/2 -translate-x-1/2">
 								{cartItem ? (
 									<div className="col-span-2 flex items-center">

@@ -10,6 +10,7 @@ import StoreProvider from "context/StoreProvider";
 import { ANALYTICS_ID } from "lib/constants";
 import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
+import ym, { YMInitializer } from "react-yandex-metrika";
 
 const queryClient = new QueryClient();
 
@@ -18,17 +19,23 @@ function MyApp({ Component, pageProps }) {
 
 	const handleRouteChange = (url) => {
 		if (typeof window !== "undefined") {
-			//   ym("hit", url);
+			ym("hit", url);
 			window.gtag("config", ANALYTICS_ID, {
 				page_path: url,
 			});
 		}
 	};
+
 	useEffect(() => {
 		router.events.on("routeChangeComplete", handleRouteChange);
-
+		router.events.on("routeChangeStart", (url) => {
+			ym("hit", url);
+		});
 		return () => {
 			router.events.off("routeChangeComplete", handleRouteChange);
+			router.events.off("routeChangeStart", (url) => {
+				ym("hit", url);
+			});
 		};
 	}, [router.events]);
 	return (
@@ -126,6 +133,18 @@ function MyApp({ Component, pageProps }) {
 					</Layout>
 				</StoreProvider>
 			</QueryClientProvider>
+			<YMInitializer
+				accounts={[89597922]}
+				options={{
+					accurateTrackBounce: true,
+					webvisor: true,
+					defer: true,
+					clickmap: true,
+					trackHash: true,
+					trackLinks: true,
+				}}
+				version="2"
+			/>
 			<Script
 				src={`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_ID}`}
 			/>

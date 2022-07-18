@@ -100,18 +100,6 @@ export default function Home({
 							title={t("sale")}
 							size={saleProducts.length}
 						/>
-						{/* {brandProducts.map((brandProduct, i) => (
-							<ProductGrid
-								onClick={() => {
-									setModalData(brandProduct.data);
-									openModal();
-								}}
-								key={`${i}.--!`}
-								data={brandProduct.data}
-								title={brandProduct.title}
-								size={brandProduct.data.length}
-							/>
-						))} */}
 					</div>
 				</div>
 
