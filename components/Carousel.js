@@ -36,7 +36,7 @@ export default function CustomCarousel({ product }) {
 		product.picture_1 ? `${source}${img}` : "/images/placeholder.jpg";
 
 	return (
-		<div className="relative w-full h-full">
+		<div className="relative w-full h-full max-h-[550px]">
 			<Image
 				src={checkImage({
 					source: sources.imageMaxSrc,
