@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
-		"start": "node server.js",
+		"start": "cross-env NODE_ENV=production node server.js",
 		"lint": "next lint"
 	},
 	"dependencies": {
@@ -37,6 +37,7 @@
 		"yup": "^0.32.11"
 	},
 	"devDependencies": {
+		"cross-env": "^7.0.3",
 		"eslint": "8.18.0",
 		"eslint-config-next": "12.2.0"
 	}
