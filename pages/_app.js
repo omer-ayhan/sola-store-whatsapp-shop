@@ -26,6 +26,23 @@ function MyApp({ Component, pageProps }) {
 		}
 	};
 
+	const checkDeviceLang = () => {
+		if (navigator?.userLanguage) {
+			return router.push(router.asPath, router.asPath, {
+				locale: navigator.userLanguage.split("-")[0],
+			});
+		} else if (navigator?.language) {
+			return router.push(router.asPath, router.asPath, {
+				locale: navigator.language.split("-")[0],
+			});
+		}
+		return router.push(router.asPath, router.asPath, { locale: "en" });
+	};
+
+	useEffect(() => {
+		checkDeviceLang();
+	}, []);
+
 	useEffect(() => {
 		router.events.on("routeChangeComplete", handleRouteChange);
 		router.events.on("routeChangeStart", (url) => {
