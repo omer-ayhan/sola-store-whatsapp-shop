@@ -5,7 +5,7 @@ import { FixedSizeList } from "react-window";
 
 import { StoreContext } from "context/StoreProvider";
 import useTranslation from "next-translate/useTranslation";
-import CustomCarousel from "./Carousel";
+import CustomCarousel from "./CustomCarousel";
 
 function ModalProduct({ data, windowProps }) {
 	const { t } = useTranslation("common");

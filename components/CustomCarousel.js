@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useState } from "react";
-import { Carousel, Tab } from "react-bootstrap";
 import { useSwipeable } from "react-swipeable";
 import sources from "sources";
 
@@ -40,7 +39,7 @@ export default function CustomCarousel({ product }) {
 			<Image
 				src={checkImage({
 					source: sources.imageMaxSrc,
-					img: product.pictures[imageKey].guidName,
+					img: product.pictures[imageKey]?.guidName,
 				})}
 				layout="fill"
 				objectFit="cover"
