@@ -35,17 +35,26 @@ function ModalProduct({ data, windowProps }) {
 		});
 	};
 
+	const chooseWidth = (width) => {
+		if (width < 500) {
+			return windowProps.width;
+		} else if (width < 800) {
+			return 500;
+		}
+		return 700;
+	};
+
 	return (
 		<FixedSizeList
+			className="no-scrollbar"
 			height={windowProps.height}
-			width={windowProps.width}
+			width={chooseWidth(windowProps.width)}
 			itemCount={data.length}
 			itemSize={windowProps.height + 20}>
 			{({ index: i, style }) => {
 				const product = data[i];
 				const sizeNum = (product.sizes && product.sizes.split("-").length) || 0;
 				const oldUnitPrice = product.oldPrice / sizeNum;
-				// const originalDiscount = oldUnitPrice - product.singlePrice;
 				const cartItem =
 					!!state.cartItems.length &&
 					state.cartItems.find(
@@ -59,16 +68,9 @@ function ModalProduct({ data, windowProps }) {
 						className="flex flex-col justify-start">
 						<div
 							style={{
-								height: `${windowProps.height}px`,
+								height: `${windowProps.height - (state.isSafari ? 100 : 0)}px`,
 							}}
 							className="relative w-full">
-							{/* <Image
-								src={`${sources.imageMaxSrc}${product.picture_1}`}
-								layout="fill"
-								objectFit="cover"
-								placeholder="blur"
-								blurDataURL="/images/placeholder.jpg"
-							/> */}
 							<CustomCarousel product={product} />
 							<div className="absolute bottom-4 left-1/2 -translate-x-1/2">
 								{cartItem ? (

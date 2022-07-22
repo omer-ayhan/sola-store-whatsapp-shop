@@ -35,17 +35,33 @@ export default function CustomCarousel({ product }) {
 		product.picture_1 ? `${source}${img}` : "/images/placeholder.jpg";
 
 	return (
-		<div className="relative w-full h-full max-h-[550px]">
-			<Image
-				src={checkImage({
-					source: sources.imageMaxSrc,
-					img: product.pictures[imageKey]?.guidName,
-				})}
-				layout="fill"
-				objectFit="cover"
-				placeholder="blur"
-				blurDataURL="/images/placeholder.jpg"
-			/>
+		<div className="grid grid-cols-2 w-full h-full gap-1">
+			<div className="relative w-full h-full">
+				<Image
+					className="col-span-1"
+					src={checkImage({
+						source: sources.imageMaxSrc,
+						img: product.pictures[0]?.guidName,
+					})}
+					layout="fill"
+					objectFit="cover"
+					placeholder="blur"
+					blurDataURL="/images/placeholder.jpg"
+				/>
+			</div>
+			<div className="relative w-full h-full">
+				<Image
+					className="col-span-1"
+					src={checkImage({
+						source: sources.imageMaxSrc,
+						img: product.pictures[2]?.guidName ?? product.pictures[1]?.guidName,
+					})}
+					layout="fill"
+					objectFit="cover"
+					placeholder="blur"
+					blurDataURL="/images/placeholder.jpg"
+				/>
+			</div>
 		</div>
 	);
 }

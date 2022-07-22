@@ -45,7 +45,7 @@ function ProductModal({ show, onClose, children, title }) {
 			<div className="z-10">
 				<Drawer open={show}>
 					<div className="relative grid grid-cols-1 bg-white z-50 h-screen">
-						<div className="bg-white w-full max-w-lg">{children}</div>
+						<div className="bg-white w-full overflow-hidden">{children}</div>
 					</div>
 				</Drawer>
 			</div>

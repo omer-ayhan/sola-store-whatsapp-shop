@@ -2,6 +2,7 @@ import {
 	SET_CART_DATA,
 	SET_CART_NUM,
 	SET_COMPLETED_CART,
+	SET_IS_SAFARI,
 	SET_SALES_TEAM_DATA,
 	SIGN_IN_USER,
 } from "./types";
@@ -34,6 +35,11 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				salesTeamData: payload,
+			};
+		case SET_IS_SAFARI:
+			return {
+				...state,
+				isSafari: payload,
 			};
 		default:
 			return state;

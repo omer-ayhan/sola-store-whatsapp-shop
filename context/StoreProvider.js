@@ -3,7 +3,12 @@ import { createContext, useEffect, useReducer } from "react";
 
 import initialState from "./store";
 import reducer from "./reducer";
-import { SET_CART_NUM, SET_SALES_TEAM_DATA, SIGN_IN_USER } from "./types";
+import {
+	SET_CART_NUM,
+	SET_IS_SAFARI,
+	SET_SALES_TEAM_DATA,
+	SIGN_IN_USER,
+} from "./types";
 import { notify } from "@components/Toast";
 import useCart from "hooks/useCart";
 
@@ -33,9 +38,17 @@ export default function StoreProvider({ children }) {
 		});
 	};
 
+	const checkSafari = () =>
+		navigator.userAgent &&
+		dispatch({
+			type: SET_IS_SAFARI,
+			payload: /^((?!chrome|android).)*safari/i.test(navigator.userAgent),
+		});
+
 	useEffect(() => {
 		handleUser();
 		handleSalesTeam();
+		checkSafari();
 	}, []);
 
 	useEffect(() => {
