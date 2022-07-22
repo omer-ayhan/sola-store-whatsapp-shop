@@ -49,7 +49,7 @@ export default function Home({
 					<ModalProduct windowProps={windowProps} data={modalData?.data} />
 				)}
 			</ProductModal>
-			<div className="grid grid-flow-col grid-cols-6 z-40 justify-center">
+			<div className="grid grid-flow-col grid-cols-6 z-40 justify-center lg:pt-10">
 				<div className="col-span-6 lg:col-span-4 flex flex-col justify-center px-1 sm:px-8 md:px-24 xl:px-32 gap-3 py-3 lg:max-h-screen lg:overflow-y-scroll">
 					<div className="grid grid-cols-4 lg:grid-cols-6 bg-white w-full rounded-2xl p-5 md:p-10 py-5 lg:mt-96">
 						{brands.map((brand, i) => (
@@ -75,7 +75,7 @@ export default function Home({
 							</div>
 						))}
 					</div>
-					<div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-10">
+					<div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-10">
 						<ProductGrid
 							onClick={() => {
 								setModalData({

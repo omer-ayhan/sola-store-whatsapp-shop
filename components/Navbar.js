@@ -16,7 +16,7 @@ export default function Navbar() {
 	const { state } = useContext(StoreContext);
 
 	return (
-		<div className="fixed flex justify-around w-full h-10 bg-primary-green px-2 z-50">
+		<div className="fixed flex justify-around w-full h-10 bg-primary-green px-2 z-10">
 			<SearchModal show={open.search} onClose={closeModal} />
 			<div className="flex items-center">
 				<button
